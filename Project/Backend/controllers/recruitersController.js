@@ -1,59 +1,96 @@
 const uuid = require('uuid');
-const recruiters = require('../models/recruiters');
+const Recruiter = require('../models/recruiters');
 
 // Get All Recruiters
-const getAllRecruiters = (req, res) => {
-    res.json(recruiters);
+const getAllRecruiters = async (req, res) => {
+    try {
+        const recruiters = await Recruiter.find();
+        res.json(recruiters);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 };
 
 // Get Single Recruiter by ID
-const getRecruiterById = (req, res) => {
-    const found = recruiters.some((recruiter) => recruiter.id === parseInt(req.params.id));
+const getRecruiterById = async (req, res) => {
+    const recruiterID = req.params.id; 
 
-    if (found) {
-        res.json(recruiters.filter((recruiter) => recruiter.id === parseInt(req.params.id)));
-    } else {
-        res.status(400).json({ msg: `No recruiter with the id of ${req.params.id}` });
+    try {
+        const recruiter = await Recruiter.findById(recruiterID);
+
+        if (!recruiter) {
+            return res.status(404).json({ error: "Reqruiter not found" });
+        }
+
+        res.json(recruiter);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-const createRecruiter = (req, res) => {
-    const newRecruiter = {
-        id: uuid.v4(),
-        ...req.body,
-    };
+// Create new Recruiter  
+const createRecruiter = async (req, res) => {
+    try {
 
-    if (!newRecruiter.name || !newRecruiter.email) {
-        return res.status(400).json({ msg: 'Please include a name and email and ...' });
-    }
+        const newRecruiter = new Recruiter({ ...req.body });
+        const savedRecruiter = await newRecruiter.save();
 
-    recruiters.push(newRecruiter);
-    res.json(recruiters);
-};
-
-const updateRecruiter = (req, res) => {
-    const found = recruiters.some((recruiter) => recruiter.id === parseInt(req.params.id));
-
-    if (found) {
-        recruiters.forEach((recruiter, i) => {
-            if (recruiter.id === parseInt(req.params.id)) {
-                recruiters[i] = { ...recruiter, ...req.body };
-                res.json({ msg: 'Recruiter updated', recruiter: recruiters[i] });
-            }
-        });
-    } else {
-        res.status(400).json({ msg: `No recruiter with the id of ${req.params.id}` });
+        res.status(201).json(savedRecruiter);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-const deleteRecruiter = (req, res) => {
-    const found = recruiters.some((recruiter) => recruiter.id === parseInt(req.params.id));
+// Update Recruiter using PATCH
+const patchRecruiter = async (req, res) => {
+    try {
+        const recruiter = await Recruiter.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true }
+        );
 
-    if (found) {
-        const updatedRecruiter = recruiters.filter((recruiter) => recruiter.id !== parseInt(req.params.id));
-        res.json({ msg: 'Recruiter deleted', recruiters: updatedRecruiter });
-    } else {
-        res.status(400).json({ msg: `No recruiter with the id of ${req.params.id}` });
+        if (!recruiter) {
+            return res.status(404).json({ error: "Recruiter not found" });
+        }
+
+        res.json(recruiter);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Update Recruiter using PUT
+const putRecruiter = async (req, res) => {
+    try {
+        const recruiter = await Recruiter.findOneAndReplace(
+            { _id: req.params.id },
+            req.body,
+            { new: true }
+        );
+
+        if (!recruiter) {
+            return res.status(404).json({ error: "Recruiter not found" });
+        }
+
+        res.json(recruiter);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Delete Recruiter by ID
+const deleteRecruiter = async (req, res) => {
+    try {
+        const recruiter = await Recruiter.findByIdAndDelete(req.params.id);
+        if (!recruiter) {
+            return res.status(404).json({ error: "Recruiter not found" });
+        }
+        res.json({ message: "Recruiter deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
@@ -61,6 +98,7 @@ module.exports = {
     getAllRecruiters,
     getRecruiterById,
     createRecruiter,
-    updateRecruiter,
+    putRecruiter,
+    patchRecruiter,
     deleteRecruiter,
 };

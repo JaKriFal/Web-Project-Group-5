@@ -1,59 +1,96 @@
 const uuid = require('uuid');
-const artists = require('../models/artists');
+const Artist = require('../models/artists');
 
 // Get All Artists
-const getAllArtists = (req, res) => {
-    res.json(artists);
+const getAllArtists = async (req, res) => {
+    try {
+        const artists = await Artist.find();
+        res.json(artists);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 };
 
 // Get Single Artist by ID
-const getArtistById = (req, res) => {
-    const found = artists.some((artist) => artist.id === parseInt(req.params.id));
+const getArtistById = async (req, res) => {
+    const artistId = req.params.id; 
 
-    if (found) {
-        res.json(artists.filter((artist) => artist.id === parseInt(req.params.id)));
-    } else {
-        res.status(400).json({ msg: `No Artist with the id of ${req.params.id}` });
+    try {
+        const artist = await Artist.findById(artistId);
+
+        if (!artist) {
+            return res.status(404).json({ error: "Artist not found" });
+        }
+
+        res.json(artist);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-const createArtist = (req, res) => {
-    const newArtist = {
-        id: uuid.v4(),
-        ...req.body,
-    };
+// Create new Artist  
+const createArtist = async (req, res) => {
+    try {
 
-    if (!newArtist.name || !newArtist.email) {
-        return res.status(400).json({ msg: 'Please include a name and email and ...' });
-    }
+        const newArtist = new Artist({ ...req.body });
+        const savedArtist = await newArtist.save();
 
-    artists.push(newArtist);
-    res.json(artists);
-};
-
-const updateArtist = (req, res) => {
-    const found = artists.some((artist) => artist.id === parseInt(req.params.id));
-
-    if (found) {
-        artists.forEach((artist, i) => {
-            if (artist.id === parseInt(req.params.id)) {
-                artists[i] = { ...artist, ...req.body };
-                res.json({ msg: 'Artist updated', artist: artists[i] });
-            }
-        });
-    } else {
-        res.status(400).json({ msg: `No Artist with the id of ${req.params.id}` });
+        res.status(201).json(savedArtist);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
-const deleteArtist = (req, res) => {
-    const found = artists.some((artist) => artist.id === parseInt(req.params.id));
+// Update Artist using PATCH
+const patchArtist = async (req, res) => {
+    try {
+        const artist = await Artist.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true }
+        );
 
-    if (found) {
-        const updatedArtists = artists.filter((artist) => artist.id !== parseInt(req.params.id));
-        res.json({ msg: 'Artist deleted', artists: updatedArtists });
-    } else {
-        res.status(400).json({ msg: `No Artist with the id of ${req.params.id}` });
+        if (!artist) {
+            return res.status(404).json({ error: "Artist not found" });
+        }
+
+        res.json(artist);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Update Artist using PUT
+const putArtist = async (req, res) => {
+    try {
+        const artist = await Artist.findOneAndReplace(
+            { _id: req.params.id },
+            req.body,
+            { new: true }
+        );
+
+        if (!artist) {
+            return res.status(404).json({ error: "Artist not found" });
+        }
+
+        res.json(artist);
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Delete Artist by ID
+const deleteArtist = async (req, res) => {
+    try {
+        const artist = await Artist.findByIdAndDelete(req.params.id);
+        if (!artist) {
+            return res.status(404).json({ error: "Artist not found" });
+        }
+        res.json({ message: "Artist deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
@@ -61,6 +98,7 @@ module.exports = {
     getAllArtists,
     getArtistById,
     createArtist,
-    updateArtist,
+    putArtist,
+    patchArtist,
     deleteArtist,
 };

@@ -3,19 +3,22 @@ const recruitersController = require('../controllers/recruitersController');
 const router = express.Router();
 const { checkRole } = require('../middleware/rolesMiddleware');
 
-// Get All Users
+// Get All Recruiters
 router.get('/', recruitersController.getAllRecruiters);
 
-// Get Single User by ID
+// Get Single Recruiter by ID
 router.get('/:id', recruitersController.getRecruiterById);
 
-// Create a New User
+// Create a New Recruiter
 router.post('/', recruitersController.createRecruiter);
 
-// Update User by ID
-router.put('/:id', recruitersController.updateRecruiter);
+// Update Recruiter by ID
+router.put('/:id', recruitersController.putRecruiter);
 
-// Delete User by ID
+// Update Recruiter by ID using PATCH
+router.patch('/:id', recruitersController.patchRecruiter);
+
+// Delete Recruiter by ID
 router.delete('/:id', recruitersController.deleteRecruiter);
 
 module.exports = router;

@@ -5,16 +5,19 @@ const router = express.Router();
 // Get All artists
 router.get('/', artistsController.getAllArtists);
 
-// Get Single Tour by ID
+// Get Single Artist by ID
 router.get('/:id', artistsController.getArtistById);
 
-// Create a New Tour
+// Create a New Artist
 router.post('/', artistsController.createArtist);
 
-// Update Tour by ID
-router.put('/:id', artistsController.updateArtist);
+// Update Artist by ID using PUT
+router.put('/:id', artistsController.putArtist);
 
-// Delete Tour by ID
+// Update Artist by ID using PATCH
+router.patch('/:id', artistsController.patchArtist);
+
+// Delete Artist by ID
 router.delete('/:id', artistsController.deleteArtist);
 
 module.exports = router;
