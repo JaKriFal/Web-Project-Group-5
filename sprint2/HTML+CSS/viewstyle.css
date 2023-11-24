@@ -1,0 +1,134 @@
+body {
+    background-color: #0C0912;
+    font-family: 'Inter', sans-serif;
+}
+
+h2 {
+    color:#FFFFFF
+}
+
+.maincontainer {
+    margin: 10%;
+    margin-top: 5%;
+    display: flex;
+    width: 80%;
+    justify-content: left;
+}
+
+.leftcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    border: 5px solid #201B2A;
+    border-radius: 5px;
+    margin: 2%;
+    background-color: #201B2A;
+}
+
+.leftcontainer a {
+    align-self: center;
+    margin: 2%;
+}
+
+.rightcontainer {
+    display: flex;
+    width: 30%;
+
+    margin: 2%;
+    justify-content: start;
+    flex-direction: column;
+    
+}
+
+.rightcontainer > div {
+    align-self: center;
+    width: 100%;
+}
+
+.user {
+    background-color: #201B2A;
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+    margin: 2%;
+    border: 5px solid #201B2A;
+    border-radius: 5px;
+}
+.usertext {
+    margin: 5%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tags {
+    background-color: #201B2A;
+    margin: 2%;
+    display:flex;
+    justify-content: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 5px solid #201B2A;
+    border-radius: 5px;
+}
+
+.tags h2 {
+    margin: 5%;
+}
+
+.tagcontainer {
+    background-color: #201B2A;
+    margin: 2%;
+    display:flex;
+    justify-content: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tags li {
+    padding: 20px;
+    margin: 5px;
+    margin-top: 0px;
+    border: 2px solid #808080;
+    border-radius: 5px;
+    list-style: none;
+    background-color: #0C0912;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.comments {
+    background-color: #201B2A;
+    color: #808080;
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+    padding: 5%;
+    border: 5px solid #201B2A;
+    border-radius: 5px;
+}
+
+form.comment input[type=text] {
+    padding: 4px;
+    font-size: 17px;
+    border: 2px solid #201B2A;
+    float: left;
+    width: 100%;
+    background: #0C0912;
+  }
+
+  form.comment button {
+    float: right;
+    width: 20%;
+    padding: 10px;
+    background: #201B2A;
+    color: #808080;
+    font-size: 17px;
+    border: 1px solid grey;
+    cursor: pointer;
+  }

@@ -1,0 +1,49 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0C0912;;
+}
+
+h2 {
+    margin-top: 20px;
+    padding: 25px;
+    color: #FFFFFF;
+  }
+
+.tagcontainer {
+    padding: 20px;
+    display: flex;
+}
+
+.tagcontainer > li {
+    padding: 20px;
+    margin: 5px;
+    margin-top: 0px;
+    border: 2px solid #808080;
+    border-radius: 5px;
+    list-style: none;
+    background-color: #0C0912;
+}
+
+.artcontainer {
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+}
+
+.artcontainer > li {
+    margin: 10px;
+    list-style: none;
+
+}
+
+.artcontainer img {
+    border: 5px solid whitesmoke;
+    border-radius: 5px;
+
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
