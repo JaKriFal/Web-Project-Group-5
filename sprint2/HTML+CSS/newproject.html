@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML 5 Boilerplate</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="navstyle.css" />
+    <link rel="stylesheet" href="newpstyle.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="https://placehold.co/50x50" alt="logo" />
+      </a>
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#">Artists</a></li>
+        <li class="nav-item"><a href="#">Jobs</a></li>
+        <li class="nav-item"><a href="#">FAQ</a></li>
+      </ul>
+      <form class="searchbar" action="#">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search.." name="search" />
+      </form>
+      <ul class="nav-buttons">
+        <li class="nav-button">
+          <a href="#"><img src="https://placehold.co/50x50" alt="logo" /></a>
+        </li>
+        <li class="nav-button">
+          <a href="#"><img src="https://placehold.co/50x50" alt="logo" /></a>
+        </li>
+        <li class="nav-button">
+          <a href="#"><img src="https://placehold.co/50x50" alt="logo" /></a>
+        </li>
+        <li class="nav-button">
+          <a href="#"><img src="https://placehold.co/50x50" alt="logo" /></a>
+        </li>
+        <li class="nav-button">
+          <a href="#"><img src="https://placehold.co/50x50" alt="logo" /></a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <form class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Manage Portfolio</a></li>
+          <li class="breadcrumb-item active">/ Create New Artwork</li>
+        </ol>
+        <h2>Untitled</h2>
+        <div class="row">
+          <div class="left-column">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Artwork Title</h4>
+              </div>
+              <fieldset class="card-body">
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="What is your artwork called?"
+                />
+              </fieldset>
+            </div>
+            <div class="card">
+            <div class="card-body">
+            <div class="assets-uploader">
+                <label for="image-upload" class="image-container">
+                    <img src="https://placehold.co/250x150" alt="Upload Image" />
+                    <span class="btn">
+                        <input
+                            type="file"
+                            id="image-upload"
+                            name="asset[image]"
+                            multiple
+                            accept="image/png,image/jpeg"
+                        />
+                        <i class="fa fa-upload"></i>
+                        Upload Image
+                    </span>
+                </label>
+            </div>
+            </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Artwork Description</h4>
+              </div>
+              <fieldset class="card-body">
+                <textarea
+                  name="description"
+                  placeholder="Artwork Description"
+                ></textarea>
+              </fieldset>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Artwork Tags</h4>
+            </div>
+            <fieldset class="card-body">
+              <input
+                type="text"
+                name="tags"
+                placeholder="Add tags to your artwork"
+              />
+            </fieldset>
+          </div>
+        </div>
+        <div class="right-column">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Project Thumbnail</h4>
+                </div>
+                <fieldset class="card-body">
+                <div class="assets-uploader">
+                    <label for="image-upload" class="image-container">
+                        <img src="https://placehold.co/150x100" alt="Upload Image" />
+
+                    </label>
+                </div>
+                <label for="image-upload">
+                    <span class="btn">
+                    <input
+                    type="file"
+                    id="image-upload"
+                    name="asset[image]"
+                    multiple
+                    accept="image/png,image/jpeg"
+                    />
+                    <i class="fa fa-upload"></i>
+                    Upload Image
+                    </span>
+                    </label>
+                    </fieldset>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Submit</h4>
+                </div>
+                <fieldset class="card-body">
+                    <label for="submit">
+                    <span class="btn">
+                    <input type="submit" value="Submit" id="submit" />
+                        Submit
+                    </span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
