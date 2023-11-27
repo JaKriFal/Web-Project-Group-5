@@ -1,0 +1,167 @@
+body {
+  background-color: #0c0912;
+  font-family: "Inter", sans-serif;
+}
+
+h2,
+h4 {
+  color: #ffffff;
+}
+
+h2 {
+  margin-bottom: 58px;
+}
+
+.card-title {
+  margin: 5px;
+}
+
+.wrapper {
+  margin: 5%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+form.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 70%;
+  margin: 0;
+}
+
+.breadcrumb {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.breadcrumb-item {
+  margin: 0;
+}
+
+.active {
+  color: #808080;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  border-radius: 5px;
+  background-color: #201b2a;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #9281b8;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #201b2a;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+input[type="text"],
+textarea {
+  padding: 4px;
+  font-size: 17px;
+  border: 2px solid #201b2a;
+  border-radius: 5px;
+  float: left;
+  width: 100%;
+  background: #0c0912;
+  color: #ffffff;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border: 1px solid #808080;
+  outline: none;
+}
+
+input[type="file"],
+input[type="submit"] {
+  display: none;
+}
+
+.assets-uploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  border: 2px dashed #9281b8;
+  border-radius: 5px;
+  background-color: #0c0912;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 2%;
+  border: 2px solid #9281b8;
+  border-radius: 5px;
+  background-color: #0c0912;
+  color: #ffffff;
+}
+
+.btn:hover {
+  border: 2px solid #ede484;
+  cursor: pointer;
+}
+
+.fa {
+  color: #9281b8;
+  padding-right: 5px;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+::placeholder {
+  color: #808080;
+}
+
+a {
+  text-decoration: none;
+  color: #ede484;
+  padding-right: 5px;
+}
