@@ -2,6 +2,7 @@ const express = require('express');
 const recruitersController = require('../controllers/recruitersController');
 const router = express.Router();
 const { checkRole } = require('../middleware/rolesMiddleware');
+const authenticateToken = require('../middleware/authMiddleware');
 
 // Get All Recruiters
 router.get('/', recruitersController.getAllRecruiters);
@@ -10,15 +11,19 @@ router.get('/', recruitersController.getAllRecruiters);
 router.get('/:id', recruitersController.getRecruiterById);
 
 // Create a New Recruiter
-router.post('/', recruitersController.createRecruiter);
+router.post('/', authenticateToken, recruitersController.createRecruiter);
 
 // Update Recruiter by ID
-router.put('/:id', recruitersController.putRecruiter);
+router.put('/:id', authenticateToken, recruitersController.putRecruiter);
 
 // Update Recruiter by ID using PATCH
-router.patch('/:id', recruitersController.patchRecruiter);
+router.patch('/:id', authenticateToken, recruitersController.patchRecruiter);
 
 // Delete Recruiter by ID
-router.delete('/:id', recruitersController.deleteRecruiter);
+router.delete('/:id', authenticateToken, recruitersController.deleteRecruiter);
+
+// Login
+router.post('/login', recruitersController.loginRecruiter);
+
 
 module.exports = router;

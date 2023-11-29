@@ -1,5 +1,6 @@
 const uuid = require('uuid');
 const Artist = require('../models/artists');
+const bcrypt = require('bcrypt');
 
 // Get All Artists
 const getAllArtists = async (req, res) => {
@@ -13,7 +14,7 @@ const getAllArtists = async (req, res) => {
 
 // Get Single Artist by ID
 const getArtistById = async (req, res) => {
-    const artistId = req.params.id; 
+    const artistId = req.params.id;
 
     try {
         const artist = await Artist.findById(artistId);
@@ -29,11 +30,25 @@ const getArtistById = async (req, res) => {
     }
 };
 
+// Login 
+const loginArtist = async (req, res) => {
+    const { username, password } = req.body;
+    const artist = await Artist.findOne({ username });
+
+    if (!artist || !(await bcrypt.compare(password, artist.password))) {
+        return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    const token = jwt.sign({ userId: artist._id }, 'SecreteKey(Should be changed)', { expiresIn: '1h' });
+
+    res.status(200).json({ token });
+};
+
 // Create new Artist  
 const createArtist = async (req, res) => {
     try {
-
-        const newArtist = new Artist({ ...req.body });
+        const hashedPassword = await bcrypt.hash(req.password, 13);
+        const newArtist = new Artist({ ...req.body, password: hashedPassword });
         const savedArtist = await newArtist.save();
 
         res.status(201).json(savedArtist);
@@ -101,4 +116,5 @@ module.exports = {
     putArtist,
     patchArtist,
     deleteArtist,
+    loginArtist
 };
