@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/mainstyle.css";
-//import PathConstants from "../routes/pathConstants";
+import PathConstants from "../routes/pathConstants";
 
 export default function Home() {
   return (
@@ -28,79 +28,79 @@ export default function Home() {
   </ul>
   <ul className="artcontainer">
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
     <li>
-      <a href="#">
-        <img src="https://placehold.co/250x250" alt="logo" />
-      </a>
+    <Link to={PathConstants.VIEW}><img src="https://placehold.co/250x250" alt="logo" />
+        <img src="https://placehold.co/250x250" alt="logo" /></Link>
+
     </li>
   </ul>
 </>

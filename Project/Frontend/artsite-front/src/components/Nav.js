@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import "../styles/navstyle.css";
-//import PathConstants from "../routes/pathConstants";
+import PathConstants from "../routes/pathConstants";
 
 export default function Nav() {
   return (
     <nav className="navbar">
-  <a href="#" className="logo">
+  <Link to={PathConstants.HOME}>
     <img src="https://placehold.co/50x50" alt="logo" />
-  </a>
+    </Link>
   <ul className="nav-links">
     <li className="nav-item">
       <a href="#">Artists</a>
@@ -27,29 +27,29 @@ export default function Nav() {
   </form>
   <ul className="nav-buttons">
     <li className="nav-button">
-      <a href="#">
-        <img src="https://placehold.co/50x50" alt="logo" />
-      </a>
+    <Link to={PathConstants.NEW}>
+    <img src="https://placehold.co/50x50" alt="logo" />
+    </Link>
     </li>
     <li className="nav-button">
-      <a href="#">
-        <img src="https://placehold.co/50x50" alt="logo" />
-      </a>
+    <Link to={PathConstants.HOME}>
+    <img src="https://placehold.co/50x50" alt="logo" />
+    </Link>
     </li>
     <li className="nav-button">
-      <a href="#">
-        <img src="https://placehold.co/50x50" alt="logo" />
-      </a>
+    <Link to={PathConstants.HOME}>
+    <img src="https://placehold.co/50x50" alt="logo" />
+    </Link>
     </li>
     <li className="nav-button">
-      <a href="#">
-        <img src="https://placehold.co/50x50" alt="logo" />
-      </a>
+    <Link to={PathConstants.HOME}>
+    <img src="https://placehold.co/50x50" alt="logo" />
+    </Link>
     </li>
     <li className="nav-button">
-      <a href="#">
-        <img src="https://placehold.co/50x50" alt="logo" />
-      </a>
+    <Link to={PathConstants.HOME}>
+    <img src="https://placehold.co/50x50" alt="logo" />
+    </Link>
     </li>
   </ul>
 </nav>

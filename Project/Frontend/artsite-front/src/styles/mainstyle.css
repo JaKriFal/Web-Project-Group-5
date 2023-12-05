@@ -12,6 +12,7 @@ h2 {
 .tagcontainer {
     padding: 20px;
     display: flex;
+    border-radius: 5px;
 }
 
 .tagcontainer > li {
