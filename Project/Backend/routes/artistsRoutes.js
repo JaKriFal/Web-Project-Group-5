@@ -24,4 +24,7 @@ router.delete('/:id', authenticateToken, artistsController.deleteArtist);
 // Login
 router.post('/login', artistsController.loginArtist);
 
+// Signup
+router.post('/signup', artistsController.signupArtist);
+
 module.exports = router;

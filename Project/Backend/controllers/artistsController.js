@@ -30,18 +30,36 @@ const getArtistById = async (req, res) => {
     }
 };
 
+//Signup
+const signupArtist = async (req, res) => {
+    const { email, password } = req.body
+
+    try {
+        const artist = await Artist.signup(email, password)
+
+        // create a token
+        const token = createToken(artist._id)
+
+        res.status(200).json({ email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+};
+
 // Login 
 const loginArtist = async (req, res) => {
-    const { username, password } = req.body;
-    const artist = await Artist.findOne({ username });
+    const { email, password } = req.body
 
-    if (!artist || !(await bcrypt.compare(password, artist.password))) {
-        return res.status(401).json({ message: 'Invalid username or password' });
+    try {
+        const artist = await Artist.login(email, password)
+
+        // create a token
+        const token = createToken(artist._id)
+
+        res.status(200).json({ email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
-
-    const token = jwt.sign({ userId: artist._id }, 'SecreteKey(Should be changed)', { expiresIn: '1h' });
-
-    res.status(200).json({ token });
 };
 
 // Create new Artist  
@@ -116,5 +134,6 @@ module.exports = {
     putArtist,
     patchArtist,
     deleteArtist,
-    loginArtist
+    loginArtist,
+    signupArtist
 };

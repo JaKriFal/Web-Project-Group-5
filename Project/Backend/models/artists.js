@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
@@ -23,6 +25,51 @@ const artistSchema = new Schema({
   savedJobs: [String],
   portfolio: [portfolioItemSchema],
 });
+
+artistSchema.statics.signup = async function (email, password) {
+
+  if (!email || !password) {
+    throw Error('All fields must be filled')
+  }
+  if (!validator.isEmail(email)) {
+    throw Error('Email not valid')
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw Error('Password not strong enough')
+  }
+
+  const exists = await this.findOne({ email })
+
+  if (exists) {
+    throw Error('Email already in use')
+  }
+
+  const salt = await bcrypt.genSalt(13)
+  const hash = await bcrypt.hash(password, salt)
+
+  const artist = await this.create({ email, password: hash })
+
+  return artist
+};
+
+artistSchema.static.login = async function (email, password) {
+  
+  if (!email || !password){
+    throw Error('All fields must be filled')
+  }
+
+  const artist = await this.findOne({email});
+  if (!artist){
+    throw Error('Incorrect email')
+  }
+
+  const match = await bcrypt.compare(artist.password, password);
+  if (!match){
+    throw Error('Incorrect password')
+  }
+
+  return artist;
+};
 
 // Create and export the model
 const Artist = mongoose.model('Artist', artistSchema);
