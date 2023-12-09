@@ -175,3 +175,37 @@ a {
   color: var(--accent-color);
   padding-right: 5px;
 }
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-item {
+  background-color: var(--background-color);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 5px;
+  margin-right: 5px;
+  border: 1px solid var(--secondary-color);
+}
+
+.tag-text {
+  color: var(--font-color);
+  padding: 0 5px;
+}
+
+.tag-remove {
+  color: var(--placeholder-color);
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.tag-remove:hover {
+  color: var(--accent-color);
+}
