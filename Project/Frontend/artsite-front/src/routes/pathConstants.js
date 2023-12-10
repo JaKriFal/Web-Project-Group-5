@@ -1,7 +1,8 @@
 const PathConstants = {
-    HOME: "/",
-    NEW: "/newproject",
-    VIEW: "/viewpage"    
-}
+  HOME: "/",
+  NEW: "/newproject",
+  VIEW: "/viewpage",
+  MANAGEPORTFOLIO: "/manageportfolio",
+};
 
-export default PathConstants
+export default PathConstants;
