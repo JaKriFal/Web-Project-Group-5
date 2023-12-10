@@ -1,7 +1,6 @@
 const express = require('express');
 const recruitersController = require('../controllers/recruitersController');
 const router = express.Router();
-const { checkRole } = require('../middleware/rolesMiddleware');
 const authenticateToken = require('../middleware/authMiddleware');
 
 // Get All Recruiters
@@ -24,6 +23,9 @@ router.delete('/:id', authenticateToken, recruitersController.deleteRecruiter);
 
 // Login
 router.post('/login', recruitersController.loginRecruiter);
+
+// Signup
+router.post('/signup', recruitersController.signupRecruiter);
 
 
 module.exports = router;

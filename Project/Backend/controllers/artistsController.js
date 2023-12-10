@@ -32,10 +32,10 @@ const getArtistById = async (req, res) => {
 
 //Signup
 const signupArtist = async (req, res) => {
-    const { email, password } = req.body
+    const { email, password, username } = req.body
 
     try {
-        const artist = await Artist.signup(email, password)
+        const artist = await Artist.signup(email, password, username)
 
         // create a token
         const token = createToken(artist._id)

@@ -16,6 +16,7 @@ const recruiterSchema = new Schema({
   email: String,
   password: String,
   savedArtists: [String],
+  savedProjects: [String],
   recruitmentStatus: Boolean,
   jobs: [jobSchema],
 });
@@ -24,6 +25,50 @@ const recruiterSchema = new Schema({
 const Recruiter = mongoose.model('Recruiter', recruiterSchema);
 module.exports = Recruiter;
 
+recruiterSchema.statics.signup = async function (email, password, companyName) {
+
+  if (!email || !password || !companyName) {
+    throw Error('All fields must be filled')
+  }
+  if (!validator.isEmail(email)) {
+    throw Error('Email not valid')
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw Error('Password not strong enough')
+  }
+
+  const exists = await this.findOne({ email })
+
+  if (exists) {
+    throw Error('Email already in use')
+  }
+
+  const salt = await bcrypt.genSalt(13)
+  const hash = await bcrypt.hash(password, salt)
+
+  const recruiter = await this.create({ email, password: hash, companyName })
+
+  return recruiter
+};
+
+recruiterSchema.static.login = async function (email, password) {
+  
+  if (!email || !password){
+    throw Error('All fields must be filled')
+  }
+
+  const recruiter = await this.findOne({email});
+  if (!recruiter){
+    throw Error('Incorrect email')
+  }
+
+  const match = await bcrypt.compare(recruiter.password, password);
+  if (!match){
+    throw Error('Incorrect password')
+  }
+
+  return recruiter;
+};
 
 /*const recruiters = [
   {
