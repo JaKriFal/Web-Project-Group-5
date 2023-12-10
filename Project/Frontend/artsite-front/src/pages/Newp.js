@@ -26,19 +26,24 @@ const initialValues = {
 const formReducer = (state, action) => {
   console.log(state);
   switch (action.type) {
-    case "HANDLE_TITLE_CHANGE":
+    case "TITLE_CHANGE":
       return { ...state, title: action.payload };
-    case "HANDLE_DESCRIPTION_CHANGE":
+    case "DESCRIPTION_CHANGE":
       return { ...state, description: action.payload };
-    case "HANDLE_TAGS_CHANGE":
+    case "TAGS_CHANGE":
       return { ...state, tags: [...state.tags, action.payload] };
     case "REMOVE_TAG":
-      const tags = state.tags.filter((tag, index) => index !== action.payload);
+      const tags = state.tags.filter((tag) => tag !== action.payload);
       return { ...state, tags: [...tags] };
-    case "HANDLE_IMAGES_CHANGE":
-      const files = Array.from(action.payload);
-      return { ...state, images: [...files] };
-    case "HANDLE_THUMBNAIL_CHANGE":
+    case "IMAGES_CHANGE":
+      const imagesFile = [...state.images, ...Array.from(action.payload)];
+      return { ...state, images: [...imagesFile] };
+    case "DELETE_IMAGE":
+      const filteredFiles = state.images.filter(
+        (image) => image !== action.payload
+      );
+      return { ...state, images: [...filteredFiles] };
+    case "THUMBNAIL_CHANGE":
       return { ...state, thumbnail: action.payload };
     case "RESET_FORM":
       return initialValues;
@@ -55,12 +60,16 @@ export default function Nav() {
     e.preventDefault();
     const tag = e.target.value;
     if (!tag.trim()) return;
-    dispatch({ type: "HANDLE_TAGS_CHANGE", payload: tag });
+    dispatch({ type: "TAGS_CHANGE", payload: tag });
     e.target.value = "";
   }
 
-  function removeTag(index) {
-    dispatch({ type: "REMOVE_TAG", payload: index });
+  function removeTag(tag) {
+    dispatch({ type: "REMOVE_TAG", payload: tag });
+  }
+
+  function handleDeleteImage(image) {
+    dispatch({ type: "DELETE_IMAGE", payload: image });
   }
 
   function ImageUploader() {
@@ -77,7 +86,7 @@ export default function Nav() {
               accept="image/png,image/jpeg"
               onChange={(e) => {
                 dispatch({
-                  type: "HANDLE_IMAGES_CHANGE",
+                  type: "IMAGES_CHANGE",
                   payload: e.target.files,
                 });
               }}
@@ -102,7 +111,6 @@ export default function Nav() {
                   : "https://placehold.co/150x100"
               }
               alt="Upload Thumbnail"
-              style={{ width: "200px", height: "150px" }}
             />
           </label>
         </div>
@@ -115,7 +123,7 @@ export default function Nav() {
               accept="image/png,image/jpeg"
               onChange={(e) => {
                 dispatch({
-                  type: "HANDLE_THUMBNAIL_CHANGE",
+                  type: "THUMBNAIL_CHANGE",
                   payload: e.target.files[0],
                 });
               }}
@@ -148,7 +156,7 @@ export default function Nav() {
                 value={state.title}
                 onChange={(e) =>
                   dispatch({
-                    type: "HANDLE_TITLE_CHANGE",
+                    type: "TITLE_CHANGE",
                     payload: e.target.value,
                   })
                 }
@@ -157,15 +165,25 @@ export default function Nav() {
             <Card>
               <div className="card-body">
                 <ImageUploader />
-                {state.images &&
-                  state.images.map((image) => (
-                    <img
-                      src={URL.createObjectURL(image)}
-                      alt="Uploaded Image"
-                      width="250"
-                      height="150"
-                    />
-                  ))}
+                <div className="images-container">
+                  {state.images &&
+                    state.images.map((image, index) => (
+                      <div key={index} className="image-card">
+                        <div className="image-header">
+                          <h3>{image.name}</h3>
+                          <span onClick={() => handleDeleteImage(image)}>
+                            X
+                          </span>
+                        </div>
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt="Uploaded Image"
+                          width="250"
+                          height="150"
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
             </Card>
             <Card title="Artwork Description">
@@ -175,7 +193,7 @@ export default function Nav() {
                 value={state.description}
                 onChange={(e) =>
                   dispatch({
-                    type: "HANDLE_DESCRIPTION_CHANGE",
+                    type: "DESCRIPTION_CHANGE",
                     payload: e.target.value,
                   })
                 }
@@ -195,7 +213,7 @@ export default function Nav() {
                       <span className="tag-text">{tag}</span>
                       <span
                         className="tag-remove"
-                        onClick={() => removeTag(index)}
+                        onClick={() => removeTag(tag)}
                       >
                         X
                       </span>
