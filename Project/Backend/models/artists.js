@@ -4,31 +4,17 @@ const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
-  src: String,
-  caption: String,
-});
-
-const portfolioItemSchema = new Schema({
-  title: String,
-  image1: imageSchema,
-  image2: imageSchema,
-  description: String,
-  tags: [String],
-});
-
 const artistSchema = new Schema({
   username: String,
   userIcon: String,
   email: String,
   password: String,
   savedJobs: [String],
-  portfolio: [portfolioItemSchema],
 });
 
-artistSchema.statics.signup = async function (email, password) {
+artistSchema.statics.signup = async function (email, password, username) {
 
-  if (!email || !password) {
+  if (!email || !password || !username) {
     throw Error('All fields must be filled')
   }
   if (!validator.isEmail(email)) {
@@ -47,7 +33,7 @@ artistSchema.statics.signup = async function (email, password) {
   const salt = await bcrypt.genSalt(13)
   const hash = await bcrypt.hash(password, salt)
 
-  const artist = await this.create({ email, password: hash })
+  const artist = await this.create({ email, password: hash, username })
 
   return artist
 };

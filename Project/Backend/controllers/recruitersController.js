@@ -1,6 +1,4 @@
-const uuid = require('uuid');
 const Recruiter = require('../models/recruiters');
-const jwt = require('jsonwebtoken');
 
 // Get All Recruiters
 const getAllRecruiters = async (req, res) => {
@@ -30,18 +28,36 @@ const getRecruiterById = async (req, res) => {
     }
 };
 
+//Signup
+const signupRecruiter = async (req, res) => {
+    const { email, password, companyName } = req.body
+
+    try {
+        const recruiter = await Recruiter.signup(email, password, companyName)
+
+        // create a token
+        const token = createToken(recruiter._id)
+
+        res.status(200).json({ email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+};
+
 // Login 
 const loginRecruiter = async (req, res) => {
-    const { username, password } = req.body;
-    const recruiter = await Recruiter.findOne({ username });
+    const { email, password } = req.body
 
-    if (!recruiter || !(await bcrypt.compare(password, recruiter.password))) {
-        return res.status(401).json({ message: 'Invalid username or password' });
+    try {
+        const recruiter = await Recruiter.login(email, password)
+
+        // create a token
+        const token = createToken(recruiter._id)
+
+        res.status(200).json({ email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
-
-    const token = jwt.sign({ userId: recruiter._id }, 'SecreteKey(Should be changed)', { expiresIn: '1h' });
-
-    res.status(200).json({ token });
 };
 
 // Create new Recruiter  
@@ -116,5 +132,6 @@ module.exports = {
     putRecruiter,
     patchRecruiter,
     deleteRecruiter,
-    loginRecruiter
+    loginRecruiter,
+    signupRecruiter
 };
