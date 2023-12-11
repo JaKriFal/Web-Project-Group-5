@@ -48,9 +48,7 @@ export default function Nav() {
               />
             </Card>
             <Card>
-              <div className="card-body">
-                <ImageUploader />
-              </div>
+              <ImageUploader />
             </Card>
             <Card title="Artwork Description">
               <textarea
