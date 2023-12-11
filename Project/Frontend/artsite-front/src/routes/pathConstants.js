@@ -3,6 +3,7 @@ const PathConstants = {
   NEW: "/newproject",
   VIEW: "/viewpage",
   MANAGEPORTFOLIO: "/manageportfolio",
+  NEWJOB: "/newjob",
 };
 
 export default PathConstants;

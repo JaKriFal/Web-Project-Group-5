@@ -1,7 +1,7 @@
-import { useArtworkFormContext } from "../hooks/useArtworkContext";
+import { useJobContext } from "../hooks/useJobContext";
 
 const TagForm = () => {
-  const { tags, dispatch } = useArtworkFormContext();
+  const { tags, dispatch } = useJobContext();
 
   function handleTags(e) {
     if (e.key === " ") e.preventDefault();
@@ -19,10 +19,12 @@ const TagForm = () => {
 
   return (
     <>
+      <label htmlFor="tags">Tags</label>
       <input
         type="text"
         name="tags"
-        placeholder="Add tags to your artwork"
+        id="tags"
+        placeholder="Add tags to your job post..."
         onKeyDown={handleTags}
       />
       <div className="tags">

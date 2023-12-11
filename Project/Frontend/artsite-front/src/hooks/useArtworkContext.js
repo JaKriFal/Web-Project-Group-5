@@ -1,11 +1,11 @@
-import { ArtworkFormContext } from "../context/ArtworkFormContext";
+import { ArtworkContext } from "../context/ArtworkContext";
 import { useContext } from "react";
 
-export const useArtworkFormContext = () => {
-  const context = useContext(ArtworkFormContext);
+export const useArtworkContext = () => {
+  const context = useContext(ArtworkContext);
   if (context === undefined) {
     throw new Error(
-      "useArtworkFormContext must be used within a ArtworkFormContextProvider"
+      "useArtworkContext must be used within a ArtworkContextProvider"
     );
   }
   return context;

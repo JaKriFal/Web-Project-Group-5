@@ -37,7 +37,7 @@ export default function Nav() {
           </Link>
         </li>
         <li className="nav-button">
-          <Link to={PathConstants.HOME}>
+          <Link to={PathConstants.NEWJOB}>
             <img src="https://placehold.co/50x50" alt="logo" />
           </Link>
         </li>

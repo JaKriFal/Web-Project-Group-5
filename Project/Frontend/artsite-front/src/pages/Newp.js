@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
 import "../styles/newpstyle.css";
-import PathConstants from "../routes/pathConstants";
 import React from "react";
-import { useReducer } from "react";
 import Card from "../components/Card";
 import ImageUploader from "../components/ImageUploader";
 import ThumbnailUploader from "../components/ThumbnailUploader";
-import { useArtworkFormContext } from "../hooks/useArtworkContext";
-import TagForm from "../components/TagForm";
-import useAddArtwork from "../hooks/useAddArtwork";
+import { useArtworkContext } from "../hooks/useArtworkContext";
+import TagFormArtwork from "../components/TagFormArtwork";
+import useArtworkFetch from "../hooks/useArtworkFetch";
 
 export default function Nav() {
-  const { title, description, dispatch } = useArtworkFormContext();
-  const { addArtworkFetch } = useAddArtwork("/api/artworks");
+  const { title, description, dispatch } = useArtworkContext();
+  const { addArtworkFetch } = useArtworkFetch("/api/artworks");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +66,7 @@ export default function Nav() {
               />
             </Card>
             <Card title="Artwork Tags">
-              <TagForm />
+              <TagFormArtwork />
             </Card>
           </div>
           <div className="right-column">

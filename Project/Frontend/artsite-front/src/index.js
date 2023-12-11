@@ -3,16 +3,19 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ArtworkFormContextProvider } from "./context/ArtworkFormContext";
+import { ArtworkContextProvider } from "./context/ArtworkContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import { JobContextProvider } from "./context/JobContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <ArtworkFormContextProvider>
-        <App />
-      </ArtworkFormContextProvider>
+      <ArtworkContextProvider>
+        <JobContextProvider>
+          <App />
+        </JobContextProvider>
+      </ArtworkContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

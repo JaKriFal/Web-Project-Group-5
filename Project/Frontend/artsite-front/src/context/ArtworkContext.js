@@ -8,9 +8,9 @@ export const initialValues = {
   thumbnail: null,
 };
 
-export const ArtworkFormContext = createContext(null);
+export const ArtworkContext = createContext(null);
 
-export const formReducer = (state, action) => {
+export const artworkReducer = (state, action) => {
   console.log(state);
   switch (action.type) {
     case "TITLE_CHANGE":
@@ -39,12 +39,12 @@ export const formReducer = (state, action) => {
   }
 };
 
-export const ArtworkFormContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(formReducer, initialValues);
+export const ArtworkContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(artworkReducer, initialValues);
 
   return (
-    <ArtworkFormContext.Provider value={{ ...state, dispatch }}>
+    <ArtworkContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </ArtworkFormContext.Provider>
+    </ArtworkContext.Provider>
   );
 };

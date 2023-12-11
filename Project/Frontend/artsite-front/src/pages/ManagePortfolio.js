@@ -16,9 +16,7 @@ export default function ManagePortfolio() {
 
   return (
     <div className="wrapper">
-      <div className="header">
-        <h1>Manage Portfolio</h1>
-      </div>
+      <h1>Manage Portfolio</h1>
       <div className="portfolio-container">
         <div className="portfolio-new" onClick={handleNewProject}>
           <h4>
