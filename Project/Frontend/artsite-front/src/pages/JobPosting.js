@@ -1,6 +1,6 @@
 import "../styles/newjobstyle.css";
 import React from "react";
-import Card from "../components/Card";
+import MainCard from "../components/MainCard";
 import TagFormJob from "../components/TagFormJob";
 import { useJobContext } from "../hooks/useJobContext";
 import useJobFetch from "../hooks/useJobFetch";
@@ -18,7 +18,7 @@ export default function JobPosting() {
   return (
     <div className="wrapper">
       <form className="form-container" onSubmit={handleSubmit}>
-        <Card title="Job Posting">
+        <MainCard title="Job Posting">
           <label htmlFor="position">* Job Position</label>
           <input
             type="text"
@@ -86,6 +86,7 @@ export default function JobPosting() {
               })
             }
           />
+          <label htmlFor="medium">* Medium</label>
           <input
             type="text"
             name="medium"
@@ -103,7 +104,7 @@ export default function JobPosting() {
             <input type="submit" value="Submit" id="submit" />
             Post
           </span>
-        </Card>
+        </MainCard>
       </form>
     </div>
   );

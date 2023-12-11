@@ -17,9 +17,8 @@ h4 {
   color: var(--font-color);
 }
 
-h2 {
-  margin-bottom: 58px;
-  padding: 0;
+.card h2 {
+  margin: 20px;
 }
 
 .wrapper {
@@ -60,6 +59,35 @@ h2 {
   background-color: var(--secondary-color);
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.card-body label {
+  color: var(--font-color);
+  margin: 5px 0 5px 0;
+}
+
+.card-body .tag-input {
+  margin-bottom: 0;
+}
+
+.card-body input,
+.card-body textarea {
+  margin-bottom: 30px;
+}
+
+.card-body textarea {
+  height: 200px;
+  resize: none;
+}
+
 input[type="text"],
 textarea {
   padding: 4px;
@@ -88,7 +116,7 @@ input[type="submit"] {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  margin: 0;
+  margin-bottom: 30px;
   padding: 0;
 }
 
@@ -115,4 +143,20 @@ input[type="submit"] {
 
 .tag-remove:hover {
   color: var(--accent-color);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 2%;
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
+.btn:hover {
+  border: 2px solid var(--accent-color);
+  cursor: pointer;
 }

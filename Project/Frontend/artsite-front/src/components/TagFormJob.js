@@ -26,6 +26,7 @@ const TagForm = () => {
         id="tags"
         placeholder="Add tags to your job post..."
         onKeyDown={handleTags}
+        className="tag-input"
       />
       <div className="tags">
         {tags &&
