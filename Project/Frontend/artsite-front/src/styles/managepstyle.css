@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: var(--primary-color);
   font-family: "Inter", sans-serif;
 }
 
@@ -29,9 +29,8 @@ h4 {
   color: var(--font-color);
 }
 
-h1 {
-  margin-bottom: 58px;
-  padding: 0;
+.header {
+  background-color: var(--background-color);
 }
 
 .wrapper {
@@ -48,7 +47,6 @@ h1 {
   width: 90%;
   height: auto;
   margin: 0;
-  background-color: var(--primary-color);
 }
 
 .portfolio-new {
