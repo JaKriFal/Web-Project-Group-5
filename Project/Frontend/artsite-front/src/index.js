@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ArtworkFormContextProvider } from "./context/ArtworkFormContext";
 import { AuthContextProvider } from "./context/AuthContext";
-import { ArtworkGetAllContextProvider } from "./context/ArtworkGetAllContext";
+import { JobContextProvider } from "./context/JobContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +13,9 @@ root.render(
     <AuthContextProvider>
       <ArtworkFormContextProvider>
         <ArtworkGetAllContextProvider>
-          <App />
+          <JobContextProvider>
+            <App />
+          </JobContextProvider>
         </ArtworkGetAllContextProvider>
       </ArtworkFormContextProvider>
     </AuthContextProvider>

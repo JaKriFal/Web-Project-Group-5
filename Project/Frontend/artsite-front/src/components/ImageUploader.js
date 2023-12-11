@@ -1,7 +1,7 @@
-import { useArtworkFormContext } from "../hooks/useArtworkContext";
+import { useArtworkContext } from "../hooks/useArtworkContext";
 
 const ImageUploader = () => {
-  const { images, dispatch } = useArtworkFormContext();
+  const { images, dispatch } = useArtworkContext();
 
   function handleDeleteImage(image) {
     dispatch({ type: "DELETE_IMAGE", payload: image });

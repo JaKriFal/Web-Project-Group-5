@@ -1,7 +1,7 @@
-import { useArtworkFormContext } from "../hooks/useArtworkContext";
+import { useArtworkContext } from "../hooks/useArtworkContext";
 
 const ThumbnailUploader = () => {
-  const { thumbnail, dispatch } = useArtworkFormContext();
+  const { thumbnail, dispatch } = useArtworkContext();
 
   return (
     <>

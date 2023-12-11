@@ -1,23 +1,23 @@
-import { useArtworkFormContext } from "./useArtworkContext";
+import { useJobContext } from "./useJobContext";
 import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 
-export default function useAddArtwork(url) {
-  const { title, description, tags, thumbnail, images } =
-    useArtworkFormContext();
+export default function useJobFetch(url) {
+  const { position, description, skills, location, type, medium, tags } =
+    useJobContext();
   const { user } = useAuthContext();
 
-  const addArtworkFetch = async () => {
-    if (!user) return;
+  //Adding Job to backend
 
+  const addJobFetch = async () => {
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("position", position);
     formData.append("description", description);
+    formData.append("skills", skills);
+    formData.append("location", location);
+    formData.append("type", type);
+    formData.append("medium", medium);
     formData.append("tags", tags);
-    formData.append("thumbnail", thumbnail);
-    images.forEach((image) => {
-      formData.append("images", image);
-    });
 
     try {
       const res = await axios.post(url, formData, {
@@ -33,5 +33,5 @@ export default function useAddArtwork(url) {
     }
   };
 
-  return { addArtworkFetch };
+  return { addJobFetch };
 }
