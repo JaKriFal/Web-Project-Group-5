@@ -20,6 +20,9 @@ app.use('/api/recruiters', require('./routes/recruitersRoutes'));
 // Artists API Routes
 app.use('/api/artists', require('./routes/artistsRoutes'));
 
+// Projects API Routes
+app.use('/api/projects', require('./routes/projectsRoutes'));
+
 app.use
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

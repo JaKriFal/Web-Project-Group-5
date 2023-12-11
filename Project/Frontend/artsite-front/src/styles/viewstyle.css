@@ -36,7 +36,7 @@ h2 {
     width: 30%;
 
     margin: 2%;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     
 }

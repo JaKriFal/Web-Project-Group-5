@@ -2,16 +2,10 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
-  data: Buffer,
-  contentType: String,
-  caption: String,
-});
-
 const projectItemSchema = new Schema({
   artistId: String,
   title: String,
-  images: [imageSchema],
+  images: [String],
   description: String,
   tags: [String],
 });

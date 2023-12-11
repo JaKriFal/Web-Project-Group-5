@@ -12,7 +12,7 @@ import useAddArtwork from "../hooks/useAddArtwork";
 
 export default function Nav() {
   const { title, description, dispatch } = useArtworkFormContext();
-  const { addArtworkFetch } = useAddArtwork("/api/artworks");
+  const { addArtworkFetch } = useAddArtwork("http://localhost:4000/api/projects");
 
   const handleSubmit = (e) => {
     e.preventDefault();

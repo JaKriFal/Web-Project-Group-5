@@ -2,9 +2,32 @@ const express = require('express');
 const projectsController = require('../controllers/projectsController');
 const router = express.Router();
 const authenticateToken = require('../middleware/authMiddleware');
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "../Frontend/artsite-front/public/uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    },
+});
+const upload = multer({ storage: storage });
+
+
+// Create a New Recruiter
+router.post(
+    "/",
+    //authenticateToken, (remove // once login is done)
+    upload.fields([
+        { name: "images", maxCount: 5 },
+        { name: "thumbnail", maxCount: 1 },
+    ]),
+    projectsController.createProject
+);
 
 // Get All Projects
-router.get('/', authenticateToken, projectsController.getAllProjects);
+router.get('/', projectsController.getAllProjects);
 
 // Get artist's Projects
 router.get('/artistsProjects', authenticateToken, projectsController.getArtistsProjects);
@@ -14,9 +37,6 @@ router.get('/recruitersProjects', authenticateToken, projectsController.getRecru
 
 // Get Single Project by ID
 router.get('/:id', authenticateToken, projectsController.getProject);
-
-// Create a New Recruiter
-router.post('/', authenticateToken, projectsController.createProjectWithMulter);
 
 // Update Recruiter by ID
 router.put('/:id', authenticateToken, projectsController.updateProject);

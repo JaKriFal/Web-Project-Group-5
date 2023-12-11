@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ArtworkFormContextProvider } from "./context/ArtworkFormContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import { ArtworkGetAllContextProvider } from "./context/ArtworkGetAllContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ArtworkFormContextProvider>
-        <App />
+        <ArtworkGetAllContextProvider>
+          <App />
+        </ArtworkGetAllContextProvider>
       </ArtworkFormContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

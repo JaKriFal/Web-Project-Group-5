@@ -69,48 +69,41 @@ const getProject = async (req, res) => {
     }
 }
 
+// crete a project
+const createProject = async (req, res, next) => {
+    const { title, description, tags } = req.body;
+    const userId = "0"; // remove "0" and place "req.user._id" once login is done 
 
-// create new project
-const createProject = async (req, res) => {
+    const images = req.files ? req.files.images.map((file) => file.filename) : [];
+    const thumbnail = req.files.thumbnail[0].filename;
+
     try {
-
-        const { title, description, tags } = req.body;
-        const userId = req.user._id;
-        if (!req.file) {
-            return res.status(400).json({ error: 'Image file is required' });
-        }
-
-        const newProject = new Project({
+        const project = await Project.create({
             artistId: userId,
             title: title,
             description: description,
-            tags: tags,
-            images: [{
-                data: req.file.buffer,
-                contentType: req.file.mimetype,
-                caption: req.file.originalname,
-            }],
+            tags: tags.split(','),
+            images: images,
+            thumbnail: thumbnail
         });
-
-        const savedProject = await newProject.save();
-
-        res.status(200).json(savedProject);
+        res.status(201).json({
+            id: project._id,
+            artistId: project.adtistId,
+            title: project.title,
+            description: project.description,
+            tags: project.tags,
+            images: project.images,
+            thumbnail: project.thumbnail
+        });
     } catch (error) {
-        console.error('Error creating project:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
-
-const createProjectWithMulter = async (req, res) => {
-    uploadMiddleware(req, res, (err) => {
-        if (err instanceof multer.MulterError) {
-            return res.status(400).json({ error: 'File upload error' });
-        } else if (err) {
-            return res.status(500).json({ error: 'Internal Server Error' });
+        if (error.name === "ValidationError") {
+        /*validation error like invalid email*/ return res
+                .status(400)
+                .json({ error: error.message });
+        } else {
+            res.status(500).json({ error: 'Internal Server Error' });
         }
-
-        createProject(req, res);
-    });
+    }
 };
 
 // delete a project
@@ -122,17 +115,22 @@ const deleteProject = async (req, res) => {
             return res.status(404).json({ error: 'No such project' });
         }
 
-        const project = await Project.findOneAndDelete({ _id: id });
-
-        if (!project) {
-            return res.status(400).json({ error: 'No such project' });
+        const project = await Project.findById({ _id: id });
+        if (project) {
+            project.images.forEach((image) => {
+                fs.unlinkSync(`Frontend/artsite-front/public/uploads/${image}`);
+            });
+            project.thumbnail &&
+                fs.unlinkSync(`Frontend/artsite-front/public/uploads/${project.thumbnail}`);
+            await project.remove();
+            res.status(201).json({ message: "Project removed" });
+        } else {
+            res.status(404).json({ error: "Project not found" });
         }
-
-        res.status(200).json(project);
     } catch {
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
 
 // update a project
 const updateProject = async (req, res) => {
@@ -163,7 +161,7 @@ module.exports = {
     getArtistsProjects,
     getRecruitersProjects,
     getProject,
-    createProjectWithMulter,
+    createProject,
     deleteProject,
     updateProject
 }

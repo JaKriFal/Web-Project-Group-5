@@ -1,0 +1,48 @@
+/* ArtworkDetails.css (or you can include this directly in your ArtworkDetails.js file) */
+
+.artwork-details {
+    color: var(--font-color);
+    margin: 0;
+    padding: 20px; /* Adjust as needed */
+    background-color: var(--primary-color);
+  }
+  
+  .artwork-details h2 {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .artwork-details .artwork-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust as needed */
+  }
+  
+  .artwork-details .artwork-images img {
+    width: 100%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Add border-radius if desired */
+  }
+  
+  .artwork-details p {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .artwork-details .artwork-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px; /* Adjust as needed */
+  }
+  
+  .artwork-details .artwork-tags span {
+    background-color: var(--background-color);
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 5px;
+    margin-right: 5px;
+    border: 1px solid var(--secondary-color);
+    color: var(--font-color);
+  }
+  
+  /* Add additional styles as needed */
+  
