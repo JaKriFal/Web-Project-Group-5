@@ -9,8 +9,8 @@ import TagFormArtwork from "../components/TagFormArtwork";
 import useArtworkFetch from "../hooks/useArtworkFetch";
 
 export default function Nav() {
-  const { title, description, dispatch } = useArtworkFormContext();
-  const { addArtworkFetch } = useAddArtwork("http://localhost:4000/api/projects");
+  const { title, description, dispatch } = useArtworkContext();
+  const { addArtworkFetch } = useArtworkFetch("http://localhost:4000/api/projects");
 
   const handleSubmit = (e) => {
     e.preventDefault();
