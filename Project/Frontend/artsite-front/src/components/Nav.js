@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import "../styles/navstyle.css";
 import PathConstants from "../routes/pathConstants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav() {
   return (
@@ -21,14 +24,18 @@ export default function Nav() {
       </ul>
       <form className="searchbar" action="#">
         <button type="submit">
-          <i className="fa fa-search" />
+          <FontAwesomeIcon icon={faSearch} />
         </button>
         <input type="text" placeholder="Search.." name="search" />
       </form>
       <ul className="nav-buttons">
         <li className="nav-button">
           <Link to={PathConstants.NEW}>
-            <img src="https://placehold.co/50x50" alt="logo" />
+            <FontAwesomeIcon
+              icon={faArrowUpFromBracket}
+              size="xl"
+              className="icon"
+            />
           </Link>
         </li>
         <li className="nav-button">
