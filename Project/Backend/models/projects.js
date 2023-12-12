@@ -8,6 +8,7 @@ const projectItemSchema = new Schema({
   images: [String],
   description: String,
   tags: [String],
+  thumbnail: String,
 });
 
 const Project = mongoose.model('Project', projectItemSchema);
