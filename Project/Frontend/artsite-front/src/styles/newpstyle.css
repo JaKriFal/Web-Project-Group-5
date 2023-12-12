@@ -139,6 +139,27 @@ input[type="submit"] {
   justify-content: center;
 }
 
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 287px;
+  height: 287px;
+}
+
+.image-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 150px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
 .btn {
   display: flex;
   justify-content: center;
@@ -260,4 +281,18 @@ a {
 
 .tag-remove:hover {
   color: var(--accent-color);
+}
+
+.icon {
+  color: var(--secondary-color);
+  padding-right: 10px;
+}
+
+.image-icon {
+  color: var(--accent-color);
+}
+
+.main-icon {
+  color: var(--accent-color);
+  padding-right: 10px;
 }

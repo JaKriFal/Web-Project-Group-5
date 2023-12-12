@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import "../styles/newpstyle.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
+
 import React from "react";
 import Card from "../components/Card";
 import ImageUploader from "../components/ImageUploader";
@@ -10,7 +13,9 @@ import useArtworkFetch from "../hooks/useArtworkFetch";
 
 export default function Nav() {
   const { title, description, dispatch } = useArtworkContext();
-  const { addArtworkFetch } = useArtworkFetch("http://localhost:4000/api/projects");
+  const { addArtworkFetch } = useArtworkFetch(
+    "http://localhost:4000/api/projects"
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,6 +80,7 @@ export default function Nav() {
               <label htmlFor="submit">
                 <span className="btn">
                   <input type="submit" value="Submit" id="submit" />
+                  <FontAwesomeIcon icon={faUpload} className="main-icon" />
                   Submit
                 </span>
               </label>

@@ -1,4 +1,7 @@
 import { useArtworkContext } from "../hooks/useArtworkContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const ImageUploader = () => {
   const { images, dispatch } = useArtworkContext();
@@ -11,7 +14,9 @@ const ImageUploader = () => {
     <>
       <div className="assets-uploader">
         <label htmlFor="image-upload" className="image-container">
-          <img src="https://placehold.co/250x150" alt="Upload Image" />
+          <div className="image-overlay">
+            <FontAwesomeIcon icon={faImage} size="2xl" className="image-icon" />
+          </div>
           <span className="btn">
             <input
               type="file"

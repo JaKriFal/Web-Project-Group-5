@@ -1,4 +1,7 @@
 import { useArtworkContext } from "../hooks/useArtworkContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const ThumbnailUploader = () => {
   const { thumbnail, dispatch } = useArtworkContext();
@@ -6,15 +9,16 @@ const ThumbnailUploader = () => {
   return (
     <>
       <div className="assets-uploader">
-        <label htmlFor="thumbnail-upload" className="image-container">
-          <img
-            src={
-              thumbnail
-                ? URL.createObjectURL(thumbnail)
-                : "https://placehold.co/150x100"
-            }
-            alt="Upload Thumbnail"
-          />
+        <label htmlFor="thumbnail-upload" className="thumbnail-container">
+          {thumbnail ? (
+            <img
+              src={URL.createObjectURL(thumbnail)}
+              alt="Upload Thumbnail"
+              className="thumbnail"
+            />
+          ) : (
+            <FontAwesomeIcon icon={faImage} size="2xl" className="image-icon" />
+          )}
         </label>
       </div>
       <label htmlFor="thumbnail-upload">
@@ -32,7 +36,7 @@ const ThumbnailUploader = () => {
             }}
           />
           <i className="fa fa-upload" />
-          Upload Image
+          <FontAwesomeIcon icon={faArrowUp} className="icon" /> Upload Image
         </span>
       </label>
     </>
