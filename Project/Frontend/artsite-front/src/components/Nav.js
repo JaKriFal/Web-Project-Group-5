@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../assets/VectorLogo.svg";
+import DefaultProfile from "../assets/User_box_duotone.svg";
 
 export default function Nav() {
   return (
@@ -56,7 +57,7 @@ export default function Nav() {
         </li>
         <li className="nav-button">
           <Link to={PathConstants.HOME}>
-            <img src="https://placehold.co/50x50" alt="logo" />
+            <img src={DefaultProfile} alt="profile" />
           </Link>
         </li>
       </ul>
