@@ -4,12 +4,13 @@ import PathConstants from "../routes/pathConstants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import Logo from "../assets/VectorLogo.svg";
 
 export default function Nav() {
   return (
     <nav className="navbar">
       <Link to={PathConstants.HOME}>
-        <img src="https://placehold.co/50x50" alt="logo" />
+        <img src={Logo} alt="logo" />
       </Link>
       <ul className="nav-links">
         <li className="nav-item">

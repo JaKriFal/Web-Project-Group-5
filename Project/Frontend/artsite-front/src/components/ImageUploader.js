@@ -31,7 +31,7 @@ const ImageUploader = () => {
                 });
               }}
             />
-            <i className="fa fa-upload" />
+            <FontAwesomeIcon icon={faArrowUp} className="icon" />
             Upload Image
           </span>
         </label>
