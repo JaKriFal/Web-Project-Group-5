@@ -4,6 +4,8 @@ const PathConstants = {
   VIEW: "/viewpage",
   MANAGEPORTFOLIO: "/manageportfolio",
   NEWJOB: "/newjob",
+  REGISTER: "/register",
+  LOGIN: "/login"
 };
 
 export default PathConstants;
