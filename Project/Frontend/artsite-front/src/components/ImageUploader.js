@@ -2,6 +2,7 @@ import { useArtworkContext } from "../hooks/useArtworkContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const ImageUploader = () => {
   const { images, dispatch } = useArtworkContext();
@@ -42,7 +43,9 @@ const ImageUploader = () => {
             <div key={index} className="image-card">
               <div className="image-header">
                 <p>{image.name}</p>
-                <span onClick={() => handleDeleteImage(image)}>X</span>
+                <span onClick={() => handleDeleteImage(image)}>
+                  <FontAwesomeIcon icon={faTrashCan} className="trash-icon" />
+                </span>
               </div>
               <img
                 src={URL.createObjectURL(image)}

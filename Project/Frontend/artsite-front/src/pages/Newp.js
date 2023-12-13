@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <div className="wrapper">
       <form
-        className="container"
+        className="container-newp"
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >

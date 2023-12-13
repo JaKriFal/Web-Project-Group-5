@@ -2,6 +2,15 @@ html {
   box-sizing: border-box;
 }
 
+:root {
+  --background-color: #0c0912;
+  --font-color: #ffffff;
+  --primary-color: #201b2a;
+  --secondary-color: #9281b8;
+  --accent-color: #ede484;
+  --placeholder-color: #808080;
+}
+
 *,
 *::before,
 *::after {
@@ -13,7 +22,7 @@ html {
 .navbar span {
   margin-top: 20px;
   padding: 25px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 nav {
@@ -69,6 +78,8 @@ nav {
 .navbar .nav-buttons {
   list-style: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar .nav-item a {
@@ -104,8 +115,36 @@ nav {
   color: #9281b8;
 }
 
-.navbar .icon:hover {
+.navbar .nav-icons:hover {
   color: #9281b8;
+}
+
+.navbar .login {
+  background-color: var(--accent-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.navbar .nav-button .login-text {
+  color: var(--background-color);
+}
+
+.navbar .login-icon {
+  padding-right: 10px;
+}
+
+.navbar .signup {
+  background-color: var(--placeholder-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.navbar .nav-button .signup-text {
+  color: var(--font-color);
+}
+
+.navbar .signup-icon {
+  padding-right: 10px;
 }
 
 .navbar .logo img {

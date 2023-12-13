@@ -16,7 +16,7 @@ export default function JobPosting() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="wrapper-jobp">
       <form className="form-container" onSubmit={handleSubmit}>
         <MainCard title="Job Posting">
           <label htmlFor="position">* Job Position</label>
