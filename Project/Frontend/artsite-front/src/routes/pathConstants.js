@@ -5,7 +5,7 @@ const PathConstants = {
   MANAGEPORTFOLIO: "/manageportfolio",
   NEWJOB: "/newjob",
   REGISTER: "/register",
-  LOGIN: "/login"
+  LOGIN: "/login",
 };
 
 export default PathConstants;
