@@ -15,6 +15,7 @@ export default function LogIn() {
   }
 
   return (
+    <div className="loginform">
     <form onSubmit={handleSubmit}>
       <h3>User login</h3>
       <label htmlFor="email">Email</label>
@@ -28,5 +29,6 @@ export default function LogIn() {
       <button disabled={isLoading}>Log in</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </div>
   );
 }

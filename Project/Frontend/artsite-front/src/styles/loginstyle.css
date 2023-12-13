@@ -7,18 +7,18 @@
     --placeholder-color: #808080;
   }
 
-body {
+.loginform body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
 }
 
-h2 {
+.loginform h2 {
     margin-top: 20px;
     padding: 25px;
     color: #FFFFFF;
   }
 
-form{
+.loginform form{
     height: 520px;
     width: 400px;
     background-color: var(--primary-color);
@@ -32,26 +32,26 @@ form{
     box-shadow: 0 0 40px var(--primary-color);
     padding: 50px 35px;
 }
-form *{
+.loginform form *{
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-form h3{
+.loginform form h3{
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
 
-label{
+.loginform label{
     display: block;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
 }
-input{
+.loginform input{
     display: block;
     height: 50px;
     width: 100%;
@@ -62,10 +62,10 @@ input{
     font-size: 14px;
     font-weight: 300;
 }
-::placeholder{
+.loginform ::placeholder{
     color: #e5e5e5;
 }
-button{
+.loginform button{
     margin-top: 50px;
     width: 100%;
     background-color: var(--secondary-color);

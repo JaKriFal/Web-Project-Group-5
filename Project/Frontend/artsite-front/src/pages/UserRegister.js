@@ -17,6 +17,7 @@ export default function UserRegister() {
 
 
   return (
+    <div className="loginform">
     <form onSubmit={handleSubmit}>
       <h3>User Registration</h3>
       <label htmlFor="username">Username</label>
@@ -40,5 +41,6 @@ export default function UserRegister() {
       <button disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </div>
   );
 }

@@ -10,7 +10,7 @@ html {
   padding: 0;
 }
 
-span {
+.navbar span {
   margin-top: 20px;
   padding: 25px;
   color: #FFFFFF;
@@ -27,25 +27,25 @@ nav {
   font-family: "Inter", sans-serif;
 }
 
-.logo {
+.navbar .logo {
   display: inline-block;
 }
 
-.nav-links {
+.navbar .nav-links {
   list-style: none;
   display: flex;
 }
 
-form.searchbar {
+.navbar form.searchbar {
   display: flex;
 }
 
-form.searchbar {
+.navbar form.searchbar {
   display: flex;
   border: 2px #201b2a;
 }
 
-form.searchbar input[type="text"] {
+.navbar form.searchbar input[type="text"] {
   padding: 4px;
   font-size: 17px;
   border: 2px solid #201b2a;
@@ -54,7 +54,7 @@ form.searchbar input[type="text"] {
   background: #0c0912;
 }
 
-form.searchbar button {
+.navbar .form.searchbar button {
   float: right;
   width: 20%;
   padding: 10px;
@@ -66,49 +66,49 @@ form.searchbar button {
   cursor: pointer;
 }
 
-.nav-buttons {
+.navbar .nav-buttons {
   list-style: none;
   display: flex;
 }
 
-.nav-item a {
+.navbar .nav-item a {
   display: inline-block;
   padding: 10px 15px;
   text-decoration: none;
   color: #808080;
 }
 
-.nav-button a {
+.navbar .nav-button a {
   display: inline-block;
   padding: 0px 5px 0px 5px;
   text-decoration: none;
   color: #808080;
 }
 
-.nav-button img {
+.navbar .nav-button img {
   width: 50px;
   vertical-align: middle;
 }
 
-.nav-item {
+.navbar .nav-item {
   border: 5px solid #0c0912;
 }
 
-.nav-item:hover {
+.navbar .nav-item:hover {
   background-color: #201b2a;
   border: 5px solid #201b2a;
   border-radius: 5px;
 }
 
-.nav-item:hover a {
+.navbar .nav-item:hover a {
   color: #9281b8;
 }
 
-.icon:hover {
+.navbar .icon:hover {
   color: #9281b8;
 }
 
-.logo img {
+.navbar .logo img {
   width: 50px;
   vertical-align: middle;
 }
