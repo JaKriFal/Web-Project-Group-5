@@ -38,7 +38,7 @@ artistSchema.statics.signup = async function (email, password, username) {
   return artist
 };
 
-artistSchema.static.login = async function (email, password) {
+artistSchema.statics.login = async function (email, password) {
   
   if (!email || !password){
     throw Error('All fields must be filled')
@@ -49,7 +49,7 @@ artistSchema.static.login = async function (email, password) {
     throw Error('Incorrect email')
   }
 
-  const match = await bcrypt.compare(artist.password, password);
+  const match = await bcrypt.compare(password, artist.password);
   if (!match){
     throw Error('Incorrect password')
   }

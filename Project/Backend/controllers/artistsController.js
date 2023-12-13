@@ -1,6 +1,11 @@
 const uuid = require('uuid');
 const Artist = require('../models/artists');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const createToken = (_id) => {
+    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
+}
 
 // Get All Artists
 const getAllArtists = async (req, res) => {
@@ -33,9 +38,11 @@ const getArtistById = async (req, res) => {
 //Signup
 const signupArtist = async (req, res) => {
     const { email, password, username } = req.body
+    console.log(req.body);
+    console.log(Artist.signup)
 
     try {
-        const artist = await Artist.signup(email, password, username)
+        const artist = await Artist.signup(email, password, username);
 
         // create a token
         const token = createToken(artist._id)
@@ -49,9 +56,11 @@ const signupArtist = async (req, res) => {
 // Login 
 const loginArtist = async (req, res) => {
     const { email, password } = req.body
+    console.log(req.body);
+    console.log(Artist.login)
 
     try {
-        const artist = await Artist.login(email, password)
+        const artist = await Artist.login(email, password);
 
         // create a token
         const token = createToken(artist._id)

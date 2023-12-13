@@ -14,8 +14,8 @@ const routes = [
   { path: PathConstants.NEW, element: <Newproject /> },
   { path: PathConstants.VIEW, element: <Viewpage /> },
   { path: PathConstants.MANAGEPORTFOLIO, element: <ManagePortfolio /> },
-  { path: PathConstants.NEWJOB, element: <JobPosting /> }
-  { path: PathConstants.REGISTER, element: <UserRegister /> }
+  { path: PathConstants.NEWJOB, element: <JobPosting /> },
+  { path: PathConstants.REGISTER, element: <UserRegister /> },
   { path: PathConstants.LOGIN, element: <LogIn /> },
 ];
 export default routes;
