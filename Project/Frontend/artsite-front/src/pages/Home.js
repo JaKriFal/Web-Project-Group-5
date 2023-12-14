@@ -1,8 +1,8 @@
-import { useEffect }from 'react'
+import { useEffect } from "react";
 import "../styles/mainstyle.css";
 import { useArtworkGetAllContext } from "../hooks/useArtworkContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import ArtworkDetails from '../components/ArtworkDetails'
+import ArtworkDetails from "../components/ArtworkDetails";
 
 export default function Home() {
   const { user } = useAuthContext();
@@ -20,9 +20,7 @@ export default function Home() {
 
       dispatch({ type: "SET_ARTWORKS", payload: data });
     };
-    if (user) {
-      getGoals();
-    }
+    getGoals();
   }, [user, dispatch]);
   return (
     <>
@@ -48,13 +46,9 @@ export default function Home() {
         </li>
       </ul>
       <div className="artcontainer">
-        {artworks && artworks.map((art) => (
-          <ArtworkDetails key={art._id} artwork={art} />
-        ))}
+        {artworks &&
+          artworks.map((art) => <ArtworkDetails key={art._id} artwork={art} />)}
       </div>
     </>
-
-
-
   );
 }
