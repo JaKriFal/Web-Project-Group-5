@@ -114,12 +114,14 @@ const deleteProject = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({ error: 'No such project' });
         }
-
-        const project = await Project.findById({ _id: id });
+        
+        const project = await Project.findByIdAndDelete({ _id: id });
         if (project) {
+            console.log(project.images);
             project.images.forEach((image) => {
-                fs.unlinkSync(`Frontend/artsite-front/public/uploads/${image}`);
+                fs.unlinkSync(`C:/Users/Иван Семенов/OneDrive/Рабочий стол/Metropolia/github/project/Web-Project-Group-5/Project/Frontend/artsite-front/public/uploads/${image}`);
             });
+            console.log(project);
             project.thumbnail &&
                 fs.unlinkSync(`Frontend/artsite-front/public/uploads/${project.thumbnail}`);
             await project.remove();

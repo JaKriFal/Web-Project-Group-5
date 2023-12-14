@@ -7,7 +7,7 @@ function authenticateToken(req, res, next) {
     return res.status(401).json({ message: 'Access denied. Token is missing.' });
   }
 
-  jwt.verify(token.replace('Bearer ', ''), 'SecreteKey(Should be changed)', (err, user) => {
+  jwt.verify(token.replace('Bearer ', ''), process.env.SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ message: 'Invalid token.' });
     }

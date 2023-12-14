@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 // Create a New Recruiter
 router.post(
     "/",
-    //authenticateToken, (remove // once login is done)
+    authenticateToken,
     upload.fields([
         { name: "images", maxCount: 5 },
         { name: "thumbnail", maxCount: 1 },
@@ -42,6 +42,6 @@ router.get('/:id', authenticateToken, projectsController.getProject);
 router.put('/:id', authenticateToken, projectsController.updateProject);
 
 // Delete Recruiter by ID
-router.delete('/:id', authenticateToken, projectsController.deleteProject);
+router.delete('/:id', projectsController.deleteProject);
 
 module.exports = router;
