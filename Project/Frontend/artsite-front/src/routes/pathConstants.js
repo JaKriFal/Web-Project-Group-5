@@ -4,6 +4,8 @@ const PathConstants = {
   VIEW: "/viewpage",
   MANAGEPORTFOLIO: "/manageportfolio",
   NEWJOB: "/newjob",
+  JOBS: "/jobs",
+  COMPANY: "/company",
   REGISTER: "/register",
   LOGIN: "/login",
 };
