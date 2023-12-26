@@ -61,6 +61,7 @@ nav {
   float: left;
   width: 100%;
   background: #0c0912;
+  color: var(--font-color);
 }
 
 .navbar .form.searchbar button {

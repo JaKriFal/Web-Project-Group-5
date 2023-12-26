@@ -7,6 +7,7 @@ import { ArtworkContextProvider } from "./context/ArtworkContext";
 import { ArtworkGetAllContextProvider } from "./context/ArtworkGetAllContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import { JobContextProvider } from "./context/JobContext";
+import { JobGetAllContextProvider } from "./context/JobGetAllContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,9 +15,11 @@ root.render(
     <AuthContextProvider>
       <ArtworkContextProvider>
         <ArtworkGetAllContextProvider>
-          <JobContextProvider>
-            <App />
-          </JobContextProvider>
+          <JobGetAllContextProvider>
+            <JobContextProvider>
+              <App />
+            </JobContextProvider>
+          </JobGetAllContextProvider>
         </ArtworkGetAllContextProvider>
       </ArtworkContextProvider>
     </AuthContextProvider>

@@ -32,7 +32,7 @@ export default function Nav() {
           <a href="#">Artists</a>
         </li>
         <li className="nav-item">
-          <a href="#">Jobs</a>
+          <Link to={PathConstants.JOBS}>Jobs</Link>
         </li>
         <li className="nav-item">
           <a href="#">FAQ</a>
