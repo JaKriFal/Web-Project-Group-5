@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/jobstyle.css";
 import { useJobGetAllContext } from "../hooks/useJobContext";
 import JobItem from "../components/JobItem";
-import JobDetails from "../components/JobDetails";
+import JobDetailsCompany from "../components/JobDetailsCompany";
 import DefaultCompanyProfile from "../assets/User_box_duotone_yellow_bigger.svg";
 import DefaultCompanyBanner from "../assets/cubes-1920.jpg";
 
@@ -90,7 +90,7 @@ export default function Company() {
                 />
               ))}
           </ul>
-          <JobDetails currentJob={currentJob} />
+          <JobDetailsCompany currentJob={currentJob} />
         </div>
       </div>
     </div>
