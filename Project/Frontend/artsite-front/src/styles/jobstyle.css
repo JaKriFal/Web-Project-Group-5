@@ -7,6 +7,77 @@
   --placeholder-color: #808080;
 }
 
+.company-page {
+  position: relative;
+  margin-top: 20px;
+}
+
+.company-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 490px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.company-banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-image: linear-gradient(
+    179.78deg,
+    rgba(23, 23, 23, 0.731693) 4.67%,
+    var(--background-color) 60.22%
+  );
+}
+
+.company-page-wrapper {
+  position: relative;
+}
+
+.company-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-info-header {
+  display: flex;
+  align-items: center;
+}
+
+.company-info-header h1 {
+  color: var(--font-color);
+}
+
+.company-info-header p {
+  color: var(--placeholder-color);
+}
+
+.company-info-header-text {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 20px;
+}
+
+.company-info-body {
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 20px;
+}
+
+.company-info-body h2 {
+  margin: 0;
+  padding: 0;
+}
+
 .jobtags {
   display: flex;
   align-items: center;
@@ -43,7 +114,7 @@
 .columncontainer {
   display: flex;
   gap: 20px;
-  margin: 10px;
+  margin: 20px;
 }
 
 .jobs-listing {

@@ -35,7 +35,7 @@ export default function Nav() {
           <Link to={PathConstants.JOBS}>Jobs</Link>
         </li>
         <li className="nav-item">
-          <a href="#">FAQ</a>
+          <Link to={PathConstants.COMPANY}>FAQ</Link>
         </li>
       </ul>
       <form className="searchbar" action="#">

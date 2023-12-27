@@ -9,6 +9,7 @@ const JobPosting = React.lazy(() => import("../pages/JobPosting"));
 const Jobs = React.lazy(() => import("../pages/Jobs"));
 const LogIn = React.lazy(() => import("../pages/LogIn"));
 const UserRegister = React.lazy(() => import("../pages/UserRegister"));
+const Company = React.lazy(() => import("../pages/Company"));
 
 const routes = [
   { path: PathConstants.HOME, element: <Home /> },
@@ -19,5 +20,6 @@ const routes = [
   { path: PathConstants.JOBS, element: <Jobs /> },
   { path: PathConstants.REGISTER, element: <UserRegister /> },
   { path: PathConstants.LOGIN, element: <LogIn /> },
+  { path: PathConstants.COMPANY, element: <Company /> },
 ];
 export default routes;
