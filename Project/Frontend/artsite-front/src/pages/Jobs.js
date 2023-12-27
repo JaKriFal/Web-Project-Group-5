@@ -1,10 +1,10 @@
-import TagsJob from "../components/TagsJob";
-import DefaultCompanyProfile from "../assets/User_box_duotone_yellow.svg";
 import { useState, useEffect } from "react";
-import "../styles/jobslistingstyle.css";
+import "../styles/jobstyle.css";
 import { useJobGetAllContext } from "../hooks/useJobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import JobItem from "../components/JobItem";
+import JobDetails from "../components/JobDetails";
 
 const placeholderJobs = [
   {
@@ -12,7 +12,7 @@ const placeholderJobs = [
     position: "Frontend Developer",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod ultricies felis, id lacinia nunc tincidunt id.",
-    skills: "JavaScript, React, CSS",
+    skills: "JavaScript, React, CSS.",
     location: "San Francisco, CA",
     type: "Full-time",
     medium: "Digital 2D",
@@ -56,24 +56,6 @@ export default function Jobs() {
     }
   }, [jobs]);
 
-  const JobItem = ({ job }) => {
-    return (
-      <div
-        className={job === currentJob ? `job-item job-item-active` : `job-item`}
-        onClick={() => setCurrentJob(job)}
-      >
-        <img
-          src={job.profile ? `uploads/${job.profile}` : DefaultCompanyProfile}
-          alt="company profile"
-        />
-        <div className="jobItem-body">
-          <h3>{job.position}</h3>
-          <p>{job.company ? job.company : `No company`}</p>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <>
       <h2>Tags</h2>
@@ -95,26 +77,17 @@ export default function Jobs() {
       </div>
       <div className="columncontainer">
         <ul className="jobs-listing">
-          {jobs && jobs.map((job) => <JobItem key={job._id} job={job} />)}
+          {jobs &&
+            jobs.map((job) => (
+              <JobItem
+                key={job._id}
+                job={job}
+                currentJob={currentJob}
+                setCurrentJob={setCurrentJob}
+              />
+            ))}
         </ul>
-        <div className="job-details">
-          <div className="jobitem_header">
-            <h3>Job Description</h3>
-            <p>{currentJob && currentJob.description}</p>
-          </div>
-
-          <div className="jobitem_body">
-            <h3>Skills & Requirements</h3>
-            <p>{currentJob && currentJob.skills}</p>
-          </div>
-          <div className="main-buttons">
-            <span className="apply-btn">Apply</span>
-            <span className="save-btn">Save</span>
-          </div>
-          <div className="jobitem_footer">
-            <TagsJob {...currentJob} />
-          </div>
-        </div>
+        <JobDetails currentJob={currentJob} />
       </div>
     </>
   );

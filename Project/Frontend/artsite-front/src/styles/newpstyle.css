@@ -17,7 +17,7 @@ h4 {
   color: var(--font-color);
 }
 
-h2 {
+.artwork-title {
   margin-bottom: 58px;
   padding: 0;
 }
@@ -191,10 +191,14 @@ input[type="submit"] {
   color: var(--placeholder-color);
 }
 
-a {
+.breadcrumb-item a {
   text-decoration: none;
   color: var(--accent-color);
   padding-right: 5px;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
 }
 
 .images-container {

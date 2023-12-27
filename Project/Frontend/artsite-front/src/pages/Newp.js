@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PathConstants from "../routes/pathConstants";
 import "../styles/newpstyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -31,11 +32,11 @@ export default function Nav() {
       >
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a href="#">Manage Portfolio</a>
+            <Link to={PathConstants.MANAGEPORTFOLIO}>Manage Portfolio</Link>
           </li>
           <li className="breadcrumb-item active">/ Create New Artwork</li>
         </ol>
-        <h2>Untitled</h2>
+        <h2 className="artwork-title">Untitled</h2>
         <div className="row">
           <div className="left-column">
             <Card title="Artwork Title">
