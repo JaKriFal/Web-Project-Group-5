@@ -5,10 +5,9 @@ const cors = require("cors");
 const { errorMiddleware } = require("./middleware/errorMiddleware");
 const { notFoundMiddleware } = require("./middleware/notFoundMiddleware");
 
-const app = express();
-
-const PORT = process.env.PORT || 3001;
 connectDB();
+
+const app = express();
 
 // Body Parser Middleware
 app.use(cors());
