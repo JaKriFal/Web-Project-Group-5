@@ -2,6 +2,8 @@ const Project = require("../models/projects");
 const Recruiter = require("../models/recruiters");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 
 // Set up Multer for handling file uploads
 const storage = multer.memoryStorage(); // Store files in memory as buffers
@@ -116,22 +118,36 @@ const deleteProject = async (req, res) => {
     }
 
     const project = await Project.findByIdAndDelete({ _id: id });
+    console.log(project);
     if (project) {
       console.log(project.images);
       project.images.forEach((image) => {
-        fs.unlinkSync(`Frontend/artsite-front/public/uploads/${image}`);
+        const imagePath = path.resolve(
+          __dirname,
+          `../../Frontend/artsite-front/public/uploads/${image}`
+        );
+        console.log(imagePath);
+        if (fs.existsSync(imagePath)) {
+          fs.unlinkSync(imagePath);
+        }
       });
       console.log(project);
-      project.thumbnail &&
-        fs.unlinkSync(
-          `Frontend/artsite-front/public/uploads/${project.thumbnail}`
+      if (project.thumbnail) {
+        const thumbnailPath = path.resolve(
+          __dirname,
+          `../../Frontend/artsite-front/public/uploads/${project.thumbnail}`
         );
-      await project.remove();
+        if (fs.existsSync(thumbnailPath)) {
+          fs.unlinkSync(thumbnailPath);
+        }
+      }
+      console.log("deleted??");
       res.status(201).json({ message: "Project removed" });
     } else {
       res.status(404).json({ error: "Project not found" });
     }
-  } catch {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -5,6 +5,7 @@ const api = supertest(app);
 const Artist = require("../models/artists.js");
 const Project = require("../models/projects.js");
 const path = require("path");
+const multer = require("multer");
 
 let token = null;
 let artist_id = null;
@@ -49,10 +50,11 @@ describe("when there is initially some projects saved", () => {
       title: "Art Piece",
       user_id: artist_id,
       description: "This is an art piece",
-      tags: ["art", "piece"],
+      tags: "art,piece",
     };
     await api
       .post("/api/projects")
+      .set("content-type", "multipart/form-data")
       .set("Authorization", `Bearer ${token}`)
       .field("title", projectData.title)
       .field("artist_id", String(projectData.user_id))
@@ -117,7 +119,6 @@ describe("when there is initially some projects saved", () => {
     test("a specific project is returned as json", async () => {
       const projectsAtStart = await projectsInDb();
       const projectToView = projectsAtStart[0];
-      console.log(projectToView);
 
       await api
         .get(`/api/projects/${projectToView._id}`)
@@ -132,11 +133,12 @@ describe("when there is initially some projects saved", () => {
         title: "Art Piece",
         user_id: artist_id,
         description: "This is an art piece",
-        tags: ["art", "piece"],
+        tags: "art,piece",
       };
 
       await api
         .post("/api/projects")
+        .set("content-type", "multipart/form-data")
         .set("Authorization", `Bearer ${token}`)
         .field("title", newProjectData.title)
         .field("artist_id", String(newProjectData.user_id))
@@ -160,11 +162,12 @@ describe("when there is initially some projects saved", () => {
         title: "New Art Piece",
         user_id: artist_id,
         description: "This is a new art piece",
-        tags: ["art", "piece"],
+        tags: "art,piece",
       };
 
       await api
         .put(`/api/projects/${projectToUpdate._id}`)
+        .set("content-type", "multipart/form-data")
         .set("Authorization", `Bearer ${token}`)
         .field("title", newproject.title)
         .field("artist_id", String(newproject.user_id))
@@ -173,7 +176,7 @@ describe("when there is initially some projects saved", () => {
         .attach("images", imagesPath1)
         .attach("images", imagesPath2)
         .attach("thumbnail", thumbnailPath)
-        .expect(201);
+        .expect(200);
     });
   });
   describe("testing deletion of projects", () => {
