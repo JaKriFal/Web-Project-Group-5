@@ -29,6 +29,7 @@ const projectsInDb = async () => {
 
 beforeAll(async () => {
   await Artist.deleteMany({});
+  await Project.deleteMany({});
 
   const artist = await api.post("/api/artists/signup").send({
     username: "Jason",
@@ -43,9 +44,10 @@ beforeAll(async () => {
   console.log(artist_id);
 });
 
-describe("when there is initially some projects saved", () => {
+describe("when there is initially project saved", () => {
   beforeEach(async () => {
     await Artist.deleteMany({});
+    await Project.deleteMany({});
     const projectData = {
       title: "Art Piece",
       user_id: artist_id,
@@ -63,6 +65,17 @@ describe("when there is initially some projects saved", () => {
       .attach("images", imagesPath1)
       .attach("images", imagesPath2)
       .attach("thumbnail", thumbnailPath);
+  });
+
+  afterEach(async () => {
+    const projects = await projectsInDb();
+    if (projects.length > 0) {
+      const projectForDeletion = projects[0];
+
+      await api
+        .delete(`/api/projects/${projectForDeletion._id}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
   });
 
   describe("testing registration of artists", () => {
@@ -182,7 +195,9 @@ describe("when there is initially some projects saved", () => {
   describe("testing deletion of projects", () => {
     test("a specific project can be deleted", async () => {
       const projectsAtStart = await projectsInDb();
+      console.log(projectsAtStart);
       const projectToDelete = projectsAtStart[0];
+      console.log(projectToDelete);
 
       await api
         .delete(`/api/projects/${projectToDelete._id}`)
