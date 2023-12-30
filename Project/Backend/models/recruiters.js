@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
@@ -21,54 +23,52 @@ const recruiterSchema = new Schema({
   jobs: [jobSchema],
 });
 
-// Create and export the model
-const Recruiter = mongoose.model('Recruiter', recruiterSchema);
-module.exports = Recruiter;
-
 recruiterSchema.statics.signup = async function (email, password, companyName) {
-
   if (!email || !password || !companyName) {
-    throw Error('All fields must be filled')
+    throw Error("All fields must be filled");
   }
   if (!validator.isEmail(email)) {
-    throw Error('Email not valid')
+    throw Error("Email not valid");
   }
   if (!validator.isStrongPassword(password)) {
-    throw Error('Password not strong enough')
+    throw Error("Password not strong enough");
   }
 
-  const exists = await this.findOne({ email })
+  const exists = await this.findOne({ email });
 
   if (exists) {
-    throw Error('Email already in use')
+    throw Error("Email already in use");
   }
 
-  const salt = await bcrypt.genSalt(13)
-  const hash = await bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(13);
+  const hash = await bcrypt.hash(password, salt);
 
-  const recruiter = await this.create({ email, password: hash, companyName })
+  const recruiter = await this.create({ email, password: hash, companyName });
 
-  return recruiter
+  return recruiter;
 };
 
-recruiterSchema.static.login = async function (email, password) {
-  
-  if (!email || !password){
-    throw Error('All fields must be filled')
+recruiterSchema.statics.login = async function (email, password) {
+  if (!email || !password) {
+    throw Error("All fields must be filled");
   }
 
-  const recruiter = await this.findOne({email});
-  if (!recruiter){
-    throw Error('Incorrect email')
+  const recruiter = await this.findOne({ email });
+  if (!recruiter) {
+    throw Error("Incorrect email");
   }
 
-  const match = await bcrypt.compare(recruiter.password, password);
-  if (!match){
-    throw Error('Incorrect password')
+  const match = await bcrypt.compare(password, recruiter.password);
+  if (!match) {
+    throw Error("Incorrect password");
   }
 
   return recruiter;
 };
+
+// Create and export the model
+const Recruiter = mongoose.model("Recruiter", recruiterSchema);
+module.exports = Recruiter;
 
 /*const recruiters = [
   {

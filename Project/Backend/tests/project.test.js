@@ -5,7 +5,6 @@ const api = supertest(app);
 const Artist = require("../models/artists.js");
 const Project = require("../models/projects.js");
 const path = require("path");
-const multer = require("multer");
 
 let token = null;
 let artist_id = null;
