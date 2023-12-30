@@ -33,7 +33,7 @@ router.get(
 );
 
 // Get Single Project by ID
-router.get("/:id", authenticateToken, projectsController.getProject);
+router.get("/:id", projectsController.getProject);
 
 // Update Recruiter by ID
 router.put("/:id", authenticateToken, projectsController.updateProject);

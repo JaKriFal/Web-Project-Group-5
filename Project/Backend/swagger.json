@@ -1,32 +1,32 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Goals API",
+    "title": "Projects API",
     "contact": {},
     "version": "1.0"
   },
   "servers": [
     {
-      "url": "http://localhost:5000/api",
+      "url": "http://localhost:4000/api",
       "variables": {}
     }
   ],
   "paths": {
-    "/users": {
+    "/artists/signup": {
       "post": {
-        "tags": ["Auth"],
-        "summary": "Register User",
-        "operationId": "RegisterUser",
+        "tags": ["Artists"],
+        "summary": "Register Artist",
+        "operationId": "RegisterArtist",
         "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterUserRequest"
+                "$ref": "#/components/schemas/RegisterArtistRequest"
               },
               "example": {
-                "name": "bob",
+                "username": "bob",
                 "email": "bob@gmail.com",
                 "password": "4wa95#Cf-"
               }
@@ -44,18 +44,18 @@
         "security": []
       }
     },
-    "/users/login": {
+    "/artists/login": {
       "post": {
-        "tags": ["Auth"],
-        "summary": "Login User",
-        "operationId": "LoginUser",
+        "tags": ["Artists"],
+        "summary": "Login Artist",
+        "operationId": "LoginArtist",
         "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginUserRequest"
+                "$ref": "#/components/schemas/LoginArtistRequest"
               },
               "example": {
                 "email": "susan@gmail.com",
@@ -75,21 +75,23 @@
         "security": []
       }
     },
-    "/goals": {
+    "/recruiters/signup": {
       "post": {
-        "tags": ["Goals"],
-        "summary": "Create Goal",
-        "operationId": "CreateGoal",
+        "tags": ["Recruiters"],
+        "summary": "Register Recruiter",
+        "operationId": "RegisterRecruiter",
         "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateGoalRequest"
+                "$ref": "#/components/schemas/RegisterRecruiterRequest"
               },
               "example": {
-                "text": "Sample Goal"
+                "companyName": "ACME Corp",
+                "email": "bob@gmail.com",
+                "password": "P@ssw0rd"
               }
             }
           },
@@ -101,12 +103,78 @@
             "headers": {}
           }
         },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/recruiters/login": {
+      "post": {
+        "tags": ["Recruiters"],
+        "summary": "Login Recruiter",
+        "operationId": "LoginRecruiter",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRecruiterRequest"
+              },
+              "example": {
+                "email": "bob@gmail.com",
+                "password": "P@ssw0rd"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/projects": {
+      "post": {
+        "tags": ["Projects"],
+        "summary": "Create Project",
+        "operationId": "CreateProject",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectRequest"
+              },
+              "example": {
+                "title": "Project Title",
+                "artist_id": "12345",
+                "description": "Project description",
+                "tags": "tag1,tag2",
+                "images": ["image1.jpg", "image2.jpg"],
+                "thumbnail": "thumbnail.jpg"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        },
         "deprecated": false
       },
       "get": {
-        "tags": ["Goals"],
-        "summary": "Get All Goals",
-        "operationId": "GetAllGoals",
+        "tags": ["Projects"],
+        "summary": "Get All Projects",
+        "operationId": "GetAllProjects",
         "parameters": [],
         "responses": {
           "200": {
@@ -114,10 +182,11 @@
             "headers": {}
           }
         },
-        "deprecated": false
+        "deprecated": false,
+        "security": []
       }
     },
-    "/goals/{id}": {
+    "/projects/{id}": {
       "parameters": [
         {
           "in": "path",
@@ -126,13 +195,13 @@
             "type": "string"
           },
           "required": true,
-          "description": "The Goal ID"
+          "description": "The Project ID"
         }
       ],
       "get": {
-        "tags": ["Goals"],
-        "summary": "Get Single Goal",
-        "operationId": "GetSingleGoal",
+        "tags": ["Projects"],
+        "summary": "Get Single Project",
+        "operationId": "GetSingleProject",
         "parameters": [],
         "responses": {
           "200": {
@@ -140,22 +209,27 @@
             "headers": {}
           }
         },
-        "deprecated": false
+        "deprecated": false,
+        "security": []
       },
       "put": {
-        "tags": ["Goals"],
-        "summary": "Update Goal",
-        "operationId": "UpdateGoal",
+        "tags": ["Projects"],
+        "summary": "Update Project",
+        "operationId": "UpdateProject",
         "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateGoalRequest"
+                "$ref": "#/components/schemas/UpdateProjectRequest"
               },
               "example": {
-                "text": "Random Goal"
+                "title": "Updated Project Title",
+                "description": "Updated project description",
+                "tags": "tag1,tag2,tag3",
+                "images": ["image1.jpg", "image2.jpg", "image3.jpg"],
+                "thumbnail": "thumbnail.jpg"
               }
             }
           },
@@ -170,12 +244,135 @@
         "deprecated": false
       },
       "delete": {
-        "tags": ["Goals"],
-        "summary": "Delete Goal",
-        "operationId": "DeleteGoal",
+        "tags": ["Projects"],
+        "summary": "Delete Project",
+        "operationId": "DeleteProject",
         "parameters": [],
         "responses": {
           "204": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/jobs": {
+      "post": {
+        "tags": ["Jobs"],
+        "summary": "Create Job",
+        "operationId": "CreateJob",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRequest"
+              },
+              "example": {
+                "position": "Software Engineer",
+                "description": "Developing software applications",
+                "skills": "You need to be skilled",
+                "location": "New York",
+                "type": "Full-time",
+                "medium": "Remote",
+                "tags": "tag1,tag2",
+                "recruiter_id": "54321"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": ["Jobs"],
+        "summary": "Get All Jobs",
+        "operationId": "GetAllJobs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/jobs/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "The Job ID"
+        }
+      ],
+      "get": {
+        "tags": ["Jobs"],
+        "summary": "Get Single Job",
+        "operationId": "GetSingleJob",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      },
+      "put": {
+        "tags": ["Jobs"],
+        "summary": "Update Job",
+        "operationId": "UpdateJob",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRequest"
+              },
+              "example": {
+                "position": "Updated Software Engineer",
+                "description": "Updated job description",
+                "skills": "You need to be skilled",
+                "location": "New York",
+                "type": "Full-time",
+                "medium": "Remote",
+                "tags": "tag1,tag2,tag3"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Jobs"],
+        "summary": "Delete Job",
+        "operationId": "DeleteJob",
+        "parameters": [],
+        "responses": {
+          "200": {
             "description": "",
             "headers": {}
           }
@@ -186,12 +383,12 @@
   },
   "components": {
     "schemas": {
-      "RegisterUserRequest": {
-        "title": "RegisterUserRequest",
-        "required": ["name", "email", "password"],
+      "RegisterArtistRequest": {
+        "title": "RegisterArtistRequest",
+        "required": ["username", "email", "password"],
         "type": "object",
         "properties": {
-          "name": {
+          "username": {
             "type": "string"
           },
           "email": {
@@ -202,13 +399,129 @@
           }
         },
         "example": {
-          "name": "bob",
+          "username": "bob",
           "email": "bob@gmail.com",
           "password": "4wa95#Cf-"
         }
       },
-      "LoginUserRequest": {
-        "title": "LoginUserRequest",
+      "CreateProjectRequest": {
+        "title": "CreateProjectRequest",
+        "required": [
+          "title",
+          "artist_id",
+          "description",
+          "tags",
+          "images",
+          "thumbnail"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "artist_id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "example": {
+          "title": "Project Title",
+          "artist_id": "12345",
+          "description": "Project description",
+          "tags": "tag1,tag2",
+          "images": ["image1.jpg", "image2.jpg"],
+          "thumbnail": "thumbnail.jpg"
+        }
+      },
+      "RegisterRecruiterRequest": {
+        "title": "RegisterRecruiterRequest",
+        "required": ["companyName", "email", "password"],
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "companyName": "ACME Corp",
+          "email": "john@gmail.com",
+          "password": "P@ssw0rd"
+        }
+      },
+      "CreateJobRequest": {
+        "title": "CreateJobRequest",
+        "required": [
+          "position",
+          "description",
+          "skills",
+          "location",
+          "type",
+          "medium",
+          "tags",
+          "recruiter_id"
+        ],
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "medium": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "recruiter_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "position": "Software Engineer",
+          "description": "Developing software applications",
+          "skills": "You need to be skilled",
+          "location": "New York",
+          "type": "Full-time",
+          "medium": "Remote",
+          "tags": "tag1,tag2",
+          "recruiter_id": "54321"
+        }
+      },
+      "LoginArtistRequest": {
+        "title": "LoginArtistRequest",
         "required": ["email", "password"],
         "type": "object",
         "properties": {
@@ -224,30 +537,98 @@
           "password": "4wa95#Cf-"
         }
       },
-      "CreateGoalRequest": {
-        "title": "CreateGoalRequest",
-        "required": ["text"],
+      "LoginRecruiterRequest": {
+        "title": "LoginRecruiterRequest",
+        "required": ["email", "password"],
         "type": "object",
         "properties": {
-          "text": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
             "type": "string"
           }
         },
         "example": {
-          "text": "Push ups"
+          "email": "john@gmail.com",
+          "password": "P@ssw0rd"
         }
       },
-      "UpdateGoalRequest": {
-        "title": "UpdateGoalRequest",
-        "required": ["text", "reps", "load"],
+      "UpdateProjectRequest": {
+        "title": "UpdateProjectRequest",
+        "required": ["title", "description", "tags", "images", "thumbnail"],
         "type": "object",
         "properties": {
-          "text": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "thumbnail": {
             "type": "string"
           }
         },
         "example": {
-          "text": "random"
+          "title": "Updated Project Title",
+          "description": "Updated project description",
+          "tags": "tag1,tag2,tag3",
+          "images": ["image1.jpg", "image2.jpg", "image3.jpg"],
+          "thumbnail": "thumbnail.jpg"
+        }
+      },
+      "UpdateJobRequest": {
+        "title": "UpdateJobRequest",
+        "required": [
+          "position",
+          "description",
+          "skills",
+          "location",
+          "type",
+          "medium",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "medium": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "position": "Updated Software Engineer",
+          "description": "Updated job description",
+          "skills": "You need to be skilled",
+          "location": "New York",
+          "type": "Full-time",
+          "medium": "Remote",
+          "tags": "tag1,tag2,tag3"
         }
       }
     },
@@ -265,11 +646,19 @@
   ],
   "tags": [
     {
-      "name": "Auth",
+      "name": "Artists",
       "description": ""
     },
     {
-      "name": "Goals",
+      "name": "Recruiters",
+      "description": ""
+    },
+    {
+      "name": "Projects",
+      "description": ""
+    },
+    {
+      "name": "Jobs",
       "description": ""
     }
   ]

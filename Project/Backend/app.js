@@ -5,6 +5,10 @@ const cors = require("cors");
 const { errorMiddleware } = require("./middleware/errorMiddleware");
 const { notFoundMiddleware } = require("./middleware/notFoundMiddleware");
 
+// Swagger
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swagger.json");
+
 connectDB();
 
 const app = express();
@@ -25,7 +29,8 @@ app.use("/api/projects", require("./routes/projectsRoutes"));
 // Jobs API Routes
 app.use("/api/jobs", require("./routes/jobsRoutes"));
 
-app.use;
+// API docs
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);
